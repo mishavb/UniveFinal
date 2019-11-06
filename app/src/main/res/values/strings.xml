@@ -3,4 +3,9 @@
     <string name="action_settings">Settings</string>
     <string name="buy_car">Een auto kopen</string>
     <string name="vehicle_menu_heading">Een auto kopen</string>
+    <string name="buy_house">Een huis kopen</string>
+    <string name="health_insurance">Een zorgverzekering kiezen</string>
+    <string name="body_shop">Een schadehersteller vinden</string>
+    <string name="screen1_text">Op belangrijke momenten in uw leven kunt u een beroep doen op Univé want Univé is een coorperatie en dat betekend dat wij voor u klaarstaan.</string>
+    <string name="help_me">Help mij, want ik wil:</string>
 </resources>
