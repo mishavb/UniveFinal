@@ -12,4 +12,8 @@
     <string name="title_help">Hulp nodig van Univé?</string>
     <string name="title_licensescan">Kentekenscan</string>
     <string name="title_activity_license_plate_scan"></string>
+    <string name="title_vehicle_info">Voertuiginformatie</string>
+    <string name="title_activity_vehicle_information">Uw auto</string>
+    <string name="scan_with_camera">Scan het kenteken met uw camera</string>
+    <string name="what_we_found">Dit is wat we over uw auto hebben gevonden:</string>
 </resources>

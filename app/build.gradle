@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+    ext.anko_version='0.10.8'
     defaultConfig {
         applicationId "com.example.univefinal"
         minSdkVersion 16
@@ -34,4 +35,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    implementation 'com.beust:klaxon:5.0.1'
+
+    implementation 'org.jetbrains.anko:anko-common:0.9'
 }

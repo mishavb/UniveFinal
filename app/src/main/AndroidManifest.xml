@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.univefinal">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,13 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LicensePlateScan"
-            android:label="@string/title_activity_license_plate_scan"
+            android:name=".VehicleInformation"
+            android:label="@string/title_activity_vehicle_information"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
+            android:name=".LicensePlateManual"
+            android:label="@string/title_vehicle_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LicensePlateScan"
+            android:label="@string/title_activity_license_plate_scan"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".VehicleMenu"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

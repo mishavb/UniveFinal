@@ -6,21 +6,20 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
-import kotlinx.android.synthetic.main.activity_vehicle_menu.*
-import kotlinx.android.synthetic.main.activity_vehicle_menu.toolbar
+import kotlinx.android.synthetic.main.activity_license_plate_manual.*
 
-class VehicleMenu : AppCompatActivity() {
+class LicensePlateManual : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_vehicle_menu)
+        setContentView(R.layout.activity_license_plate_manual)
         setSupportActionBar(toolbar)
-
 
         //actionbar
         val actionbar = supportActionBar
@@ -32,10 +31,20 @@ class VehicleMenu : AppCompatActivity() {
         toolbar.setTitleTextColor(Color.BLACK)
 
         //button actions
-        val retrieveVehicleInfo = findViewById<Button>(R.id.retrieve_vehicle_info)
+        val retrieveVehicleInfo = findViewById<Button>(R.id.vehicle_information)
         retrieveVehicleInfo.setOnClickListener{
-            val intent = Intent(this, LicensePlateManual::class.java)
-            startActivity(intent)
+            val licenseplateinput = findViewById<EditText>(R.id.license_plate_input)
+            val licenseplatetext = licenseplateinput.text.toString()
+            val errorlabel = findViewById<TextView>(R.id.errorlabel)
+            errorlabel.text = ""
+
+            if(validateLicensePlate(licenseplatetext)) {
+                val intent = Intent(this, VehicleInformation::class.java)
+                intent.putExtra("licenseplate", licenseplatetext)
+                startActivity(intent)
+            } else {
+                errorlabel.text = "Vul een geldig kenteken in"
+            }
         }
     }
 
@@ -56,10 +65,18 @@ class VehicleMenu : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun validateLicensePlate(licenseplate : String) : Boolean {
+        val check = "-"
+        if(licenseplate.length != 8) {
+            return false
+        } else if (licenseplate.count{ check.contains(it) } != 2){
+            return false
+        }
+        return true
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
-
 }
