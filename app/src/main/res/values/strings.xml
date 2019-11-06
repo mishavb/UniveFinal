@@ -2,4 +2,5 @@
     <string name="app_name">UniveFinal</string>
     <string name="action_settings">Settings</string>
     <string name="buy_car">Een auto kopen</string>
+    <string name="vehicle_menu_heading">Een auto kopen</string>
 </resources>
