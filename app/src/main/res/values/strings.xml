@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="buy_car">Een auto kopen</string>
     <string name="vehicle_menu_heading">Een auto kopen</string>
+    <string name="retrieve_vehicle_info">Ophalen voertuiginformatie</string>
     <string name="buy_house">Een huis kopen</string>
     <string name="health_insurance">Een zorgverzekering kiezen</string>
     <string name="body_shop">Een schadehersteller vinden</string>
