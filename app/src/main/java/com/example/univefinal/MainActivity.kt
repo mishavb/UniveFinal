@@ -1,6 +1,7 @@
 package com.example.univefinal
 
 import android.app.ActionBar
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -17,6 +18,7 @@ import android.util.TypedValue
 import android.widget.TextView
 import android.widget.RelativeLayout
 import android.view.Gravity
+import android.widget.ImageButton
 import android.widget.Toast
 
 
@@ -36,6 +38,13 @@ class MainActivity : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
+
+        //button actions
+        val buyCar = findViewById<ImageButton>(R.id.buyCar)
+        buyCar.setOnClickListener{
+            val intent = Intent(this, VehicleMenu::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
