@@ -24,14 +24,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
+    <Button
         android:id="@+id/buyCar"
         android:layout_width="409dp"
         android:layout_height="82dp"
         android:layout_marginTop="81dp"
+        android:background="@drawable/button_bg"
+        android:capitalize="none"
+        android:drawableLeft="@drawable/back_button"
+        android:drawablePadding="20dip"
+        android:fontFamily="@font/open_sans_light"
+        android:gravity="left|center"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingLeft="20dp"
+        android:singleLine="true"
+        android:text="@string/buy_car"
+        android:textColor="#505050"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

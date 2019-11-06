@@ -15,11 +15,8 @@ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.TypedValue
-import android.widget.TextView
-import android.widget.RelativeLayout
 import android.view.Gravity
-import android.widget.ImageButton
-import android.widget.Toast
+import android.widget.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         toolbar.setTitleTextColor(Color.BLACK)
 
         //button actions
-        val buyCar = findViewById<ImageButton>(R.id.buyCar)
+        val buyCar = findViewById<Button>(R.id.buyCar)
         buyCar.setOnClickListener{
             val intent = Intent(this, VehicleMenu::class.java)
             startActivity(intent)
