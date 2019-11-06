@@ -11,6 +11,7 @@
     <Button
         android:id="@+id/retrieve_vehicle_info"
         style="@style/CustomButton"
+        android:layout_marginTop="81dp"
         android:text="@string/retrieve_vehicle_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
