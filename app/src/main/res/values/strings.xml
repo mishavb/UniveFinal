@@ -7,4 +7,7 @@
     <string name="body_shop">Een schadehersteller vinden</string>
     <string name="screen1_text">Op belangrijke momenten in uw leven kunt u een beroep doen op Univé want Univé is een coorperatie en dat betekend dat wij voor u klaarstaan.</string>
     <string name="help_me">Help mij, want ik wil:</string>
+    <string name="title_help">Hulp nodig van Univé?</string>
+    <string name="title_licensescan">Kentekenscan</string>
+    <string name="title_activity_license_plate_scan"></string>
 </resources>

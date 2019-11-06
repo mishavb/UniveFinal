@@ -1,31 +1,23 @@
 package com.example.univefinal
 
-import android.app.ActionBar
-import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 
+import kotlinx.android.synthetic.main.activity_license_plate_scan.*
+import kotlinx.android.synthetic.main.activity_license_plate_scan.toolbar
 import kotlinx.android.synthetic.main.activity_main.*
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.util.TypedValue
-import android.view.Gravity
-import android.widget.*
 
-
-class MainActivity : AppCompatActivity() {
+class LicensePlateScan : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_license_plate_scan)
         setSupportActionBar(toolbar)
-
 
         //actionbar
         val actionbar = supportActionBar
@@ -35,20 +27,6 @@ class MainActivity : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
-
-        //button actions
-        val buyCar = findViewById<Button>(R.id.buyCar)
-        buyCar.setOnClickListener{
-            val intent = Intent(this, VehicleMenu::class.java)
-            startActivity(intent)
-        }
-
-        //button actions
-        val buyHouse = findViewById<Button>(R.id.buyHouse)
-        buyHouse.setOnClickListener{
-            val intent = Intent(this, LicensePlateScan::class.java)
-            startActivity(intent)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -73,5 +51,4 @@ class MainActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
-
 }

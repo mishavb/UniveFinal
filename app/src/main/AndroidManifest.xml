@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".LicensePlateScan"
+            android:label="@string/title_activity_license_plate_scan"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".VehicleMenu"
             android:theme="@style/AppTheme.NoActionBar">
-
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".MainActivity"

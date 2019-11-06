@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/bree_serif"
-        android:text="Hulp nodig van Univé?"
+        android:text="@string/title_help"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
