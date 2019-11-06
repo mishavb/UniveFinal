@@ -17,6 +17,7 @@ import android.util.TypedValue
 import android.widget.TextView
 import android.widget.RelativeLayout
 import android.view.Gravity
+import android.widget.Toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +36,23 @@ class MainActivity : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here.
+        val id = item.itemId
+
+        if (id == R.id.to_main_menu) {
+            Toast.makeText(this, "To Main menu", Toast.LENGTH_LONG).show()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
 
@@ -43,5 +60,5 @@ class MainActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
-   
+
 }
