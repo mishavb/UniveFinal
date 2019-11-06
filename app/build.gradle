@@ -23,6 +23,7 @@ android {
         }
     }
 }
+apply plugin: 'com.android.application'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -38,4 +39,7 @@ dependencies {
     implementation 'com.beust:klaxon:5.0.1'
 
     implementation 'org.jetbrains.anko:anko-common:0.9'
+    implementation 'com.google.firebase:firebase-ml-vision:23.0.0'
+
 }
+apply plugin: 'com.google.gms.google-services'
