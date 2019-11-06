@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1029757634075",
+    "firebase_url": "https://windesheimunive.firebaseio.com",
+    "project_id": "windesheimunive",
+    "storage_bucket": "windesheimunive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029757634075:android:e45f762859a14ed5f31abe",
+        "android_client_info": {
+          "package_name": "com.example.univefinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029757634075-lh4n9ug9be5ab34s7uoihda203gpl6ql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9uL-5IorsUE5jm2NvHOjIbmGGY_S_xEc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029757634075-lh4n9ug9be5ab34s7uoihda203gpl6ql.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
