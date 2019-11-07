@@ -1,5 +1,6 @@
 package com.example.univefinal
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -13,9 +14,12 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 
 import kotlinx.android.synthetic.main.activity_license_plate_manual.*
+import kotlinx.android.synthetic.main.content_license_plate_manual.*
 
 class LicensePlateManual : AppCompatActivity() {
-
+    companion object {
+        const val START_VEHICLE_INFO_REQUEST_CODE = 0
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_license_plate_manual)
@@ -42,7 +46,7 @@ class LicensePlateManual : AppCompatActivity() {
                 val intent = Intent(this, VehicleInformation::class.java)
                 intent.putExtra("licenseplate", licenseplatetext)
                 intent.putExtra("parentView", "manual")
-                startActivity(intent)
+                startActivityForResult(intent, START_VEHICLE_INFO_REQUEST_CODE)
             } else {
                 errorlabel.text = "Vul een geldig kenteken in"
             }
@@ -53,6 +57,20 @@ class LicensePlateManual : AppCompatActivity() {
         retrieve_vehicle_info3.setOnClickListener{
             val intent = Intent(this, LicensePlateScan::class.java)
             startActivity(intent)
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == START_VEHICLE_INFO_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                val errorToken = data!!.getIntExtra("errorToken", 0)
+                if(errorToken == 1){
+                    errorlabel.text = "Voor dit kenteken zijn geen gegevens beschikbaar"
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
         }
     }
 

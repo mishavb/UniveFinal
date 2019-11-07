@@ -32,6 +32,10 @@ class LicensePlateScan : AppCompatActivity() {
     private lateinit var licensePlateText: EditText
     private lateinit var btnNextStep: Button
 
+    companion object {
+        const val START_VEHICLE_INFO_REQUEST_CODE = 0
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_license_plate_scan)
@@ -117,7 +121,9 @@ class LicensePlateScan : AppCompatActivity() {
         if (resultCode == Activity.RESULT_CANCELED) {
             return
         }
-        if (requestCode == GALLERY) {
+        if (requestCode == START_VEHICLE_INFO_REQUEST_CODE){
+            Toast.makeText(this, "Geen gegevens over dit kenteken gevonden", Toast.LENGTH_SHORT).show()
+        } else if (requestCode == GALLERY) {
             if (data != null) {
                 val contentURI = data.data
                 try {
@@ -217,7 +223,7 @@ class LicensePlateScan : AppCompatActivity() {
                 val intent = Intent(this, VehicleInformation::class.java)
                 intent.putExtra("licenseplate", licensePlateText.text.toString())
                 intent.putExtra("parentView", "scan")
-                startActivity(intent)
+                startActivityForResult(intent, START_VEHICLE_INFO_REQUEST_CODE)
             }
 
             btnNextStep.visibility = View.VISIBLE

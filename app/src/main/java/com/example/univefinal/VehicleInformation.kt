@@ -1,5 +1,6 @@
 package com.example.univefinal
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -40,6 +41,12 @@ class VehicleInformation : AppCompatActivity() {
         parentView = intent.getStringExtra("parentView")
         loadVehicleData(strLicenseplate, infoTextView)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
@@ -88,16 +95,12 @@ class VehicleInformation : AppCompatActivity() {
         }
     }
 
-    private fun returnToParentView() {
-        if(parentView == "manual"){
-            val intent = Intent(this, LicensePlateManual::class.java)
-            intent.putExtra("errorToken", 1)
-            startActivity(intent)
-        } else if(parentView == "scan"){
-            val intent = Intent(this, LicensePlateScan::class.java)
-            intent.putExtra("errorToken", 1)
-            startActivity(intent)
+    private fun returnToPreviousActivity() {
+        val intent = Intent().apply {
+            putExtra("errorToken", 1)
         }
+        setResult(Activity.RESULT_OK, intent)
+        onBackPressed()
     }
 
     private fun loadVehicleData(licenseplate : String, textView : TextView) {
@@ -132,7 +135,7 @@ class VehicleInformation : AppCompatActivity() {
 //                    var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
 //                    premieBtn.visibility = View.VISIBLE
                 } else {
-                    returnToParentView()
+                    returnToPreviousActivity()
                 }
 
             }
