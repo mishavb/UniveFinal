@@ -1,5 +1,6 @@
 package com.example.univefinal
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.StrictMode
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,7 @@ import org.jetbrains.anko.uiThread
 import java.net.URL
 
 class VehicleInformation : AppCompatActivity() {
+    private var parentView : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +37,7 @@ class VehicleInformation : AppCompatActivity() {
 
         val strLicenseplate = intent.getStringExtra("licenseplate")
         val infoTextView = findViewById<TextView>(R.id.retrieved_info)
+        parentView = intent.getStringExtra("parentView")
         loadVehicleData(strLicenseplate, infoTextView)
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -84,12 +88,24 @@ class VehicleInformation : AppCompatActivity() {
         }
     }
 
+    private fun returnToParentView() {
+        if(parentView == "manual"){
+            val intent = Intent(this, LicensePlateManual::class.java)
+            intent.putExtra("errorToken", 1)
+            startActivity(intent)
+        } else if(parentView == "scan"){
+            val intent = Intent(this, LicensePlateScan::class.java)
+            intent.putExtra("errorToken", 1)
+            startActivity(intent)
+        }
+    }
+
     private fun loadVehicleData(licenseplate : String, textView : TextView) {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-//        var loading = findViewById<RelativeLayout>(R.id.loadingPanel)
-//        loading.visibility = View.VISIBLE
+        var loading = findViewById<RelativeLayout>(R.id.loader)
+        loading.visibility = View.VISIBLE
 
         val licensePlateFormatted = licenseplate.replace("-", "")
         Log.d("Plate:", licensePlateFormatted)
@@ -104,8 +120,8 @@ class VehicleInformation : AppCompatActivity() {
                     var returnText = licenseplate + "\n" +car.merk + "\n" +car.handelsbenaming+"\n"+car.brandstof+"\n"+car.inrichting+"\n"+formatAPKDate(car.vervaldatum_apk)
                     textView.text = returnText
 
-//                    //hide loader
-//                    loading.visibility = View.GONE
+                    //hide loader
+                    loading.visibility = View.GONE
 
                     //labels
                     var labels = findViewById<TextView>(R.id.retrieved_info_labels)
@@ -115,6 +131,8 @@ class VehicleInformation : AppCompatActivity() {
                     //show premie button
 //                    var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
 //                    premieBtn.visibility = View.VISIBLE
+                } else {
+                    returnToParentView()
                 }
 
             }
