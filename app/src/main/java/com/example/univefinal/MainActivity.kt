@@ -42,13 +42,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, VehicleMenu::class.java)
             startActivity(intent)
         }
-
-        //button actions
-        val buyHouse = findViewById<Button>(R.id.buyHouse)
-        buyHouse.setOnClickListener{
-            val intent = Intent(this, LicensePlateScan::class.java)
-            startActivity(intent)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
