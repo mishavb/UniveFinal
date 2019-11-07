@@ -35,6 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+
     <Button
         android:id="@+id/chooseSource"
         android:layout_width="87dp"
@@ -48,19 +49,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/licensePicture" />
 
+    <ImageView
+        android:id="@+id/licenseView"
+        android:visibility="invisible"
+        android:layout_width="256dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginRight="136dp"
+        android:src="@drawable/license_plate_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chooseSource" />
+
     <EditText
         android:id="@+id/licensePlateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="187dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="90dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="54dp"
+        android:background="@android:color/transparent"
+        android:capitalize="characters"
         android:ems="10"
+        android:fontFamily="@font/open_sans_bold"
         android:gravity="top"
-        android:inputType="textMultiLine"
-        android:padding="10dp"
-        android:visibility="invisible"
         android:hint="Detected text will appear here."
+        android:inputType="textPersonName"
+        android:maxLength="8"
+        android:padding="10dp"
+        android:singleLine="false"
+        android:text="25-DJ-SG"
+        android:textColor="#505050"
+        android:textSize="28sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseSource" />
 

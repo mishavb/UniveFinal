@@ -191,20 +191,24 @@ class LicensePlateScan : AppCompatActivity() {
         }
         var blockText = ""
         for (block in resultText.textBlocks) {
-            Log.d("RESPONSE LINE", block.text)
             if(validLicensePlate(block.text))
             {
                 var value = block.text.replace(" ", "-")
                 blockText = value            }
         }
+        val licenseView = findViewById<ImageView>(R.id.licenseView)
 
         //none found
         if(blockText == "")
         {
             licensePlateText.visibility = View.INVISIBLE
             btnNextStep.visibility = View.INVISIBLE
+            licenseView.visibility = View.INVISIBLE
         }
         else {
+            //show licenceplate graphic
+            licenseView.visibility = View.VISIBLE
+
             //add license to textinput
             licensePlateText.setText(blockText)
             licensePlateText.visibility = View.VISIBLE
