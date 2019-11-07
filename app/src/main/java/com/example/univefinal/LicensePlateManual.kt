@@ -47,6 +47,13 @@ class LicensePlateManual : AppCompatActivity() {
                 errorlabel.text = "Vul een geldig kenteken in"
             }
         }
+
+        //scan licenseplate button
+        var retrieve_vehicle_info3 = findViewById<Button>(R.id.retrieve_vehicle_info3)
+        retrieve_vehicle_info3.setOnClickListener{
+            val intent = Intent(this, LicensePlateScan::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

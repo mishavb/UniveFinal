@@ -30,6 +30,7 @@ class LicensePlateScan : AppCompatActivity() {
     private val GALLERY = 1
     private val CAMERA = 2
     private lateinit var licensePlateText: EditText
+    private lateinit var btnNextStep: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +52,9 @@ class LicensePlateScan : AppCompatActivity() {
             showPictureDialog()
         }
 
-
         licensePlateText = findViewById<EditText>(R.id.licensePlateText)
+
+        btnNextStep = findViewById<Button>(R.id.vehicle_information)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -167,6 +169,11 @@ class LicensePlateScan : AppCompatActivity() {
         }
 
         if(licensePlate.length == 8) {
+            //if slot 3 = empty or dash
+            if(licensePlate.substring(2,3) == " ") {
+                return true
+            }
+
             if(frequency == 2) {
                 return true
             }
@@ -187,19 +194,29 @@ class LicensePlateScan : AppCompatActivity() {
             Log.d("RESPONSE LINE", block.text)
             if(validLicensePlate(block.text))
             {
-                blockText = block.text
-            }
+                var value = block.text.replace(" ", "-")
+                blockText = value            }
         }
 
         //none found
         if(blockText == "")
         {
             licensePlateText.visibility = View.INVISIBLE
+            btnNextStep.visibility = View.INVISIBLE
         }
         else {
             //add license to textinput
             licensePlateText.setText(blockText)
             licensePlateText.visibility = View.VISIBLE
+
+            btnNextStep.setOnClickListener{
+                val intent = Intent(this, VehicleInformation::class.java)
+                intent.putExtra("licenseplate", licensePlateText.text.toString())
+                intent.putExtra("parentView", "scan")
+                startActivity(intent)
+            }
+
+            btnNextStep.visibility = View.VISIBLE
         }
     }
 
