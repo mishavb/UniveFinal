@@ -1,45 +1,20 @@
 package com.example.univefinal
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Intent
-import android.os.Bundle
-import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-
-import kotlinx.android.synthetic.main.activity_license_plate_scan.*
-import android.content.DialogInterface
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.net.Uri
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat.startActivityForResult
-import android.graphics.Bitmap
 import android.graphics.Color
+import android.os.Bundle
 import android.os.StrictMode
-import android.provider.MediaStore
-import android.util.Base64
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.*
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.beust.klaxon.Klaxon
-import org.jetbrains.anko.custom.async
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.find
-import org.jetbrains.anko.uiThread
-import java.io.IOException
-import org.w3c.dom.Text
-import java.io.ByteArrayOutputStream
-import java.net.URL
-import java.nio.charset.Charset
-
 import kotlinx.android.synthetic.main.activity_vehicle_information.*
-import kotlinx.android.synthetic.main.activity_vehicle_information.toolbar
-import org.jetbrains.anko.activityUiThread
+import org.jetbrains.anko.custom.async
+import org.jetbrains.anko.uiThread
+import java.net.URL
 
 class VehicleInformation : AppCompatActivity() {
 
@@ -124,20 +99,20 @@ class VehicleInformation : AppCompatActivity() {
             val apiResult = getJsonFromURL(apiURL)
             var car = convertJSONtoLicenseplate(apiResult)
             uiThread {
-                textView.text = "hello"
                 if(car != null) {
-                    var returnText = car.merk + "\n" +car.handelsbenaming+"\n"+car.inrichting+"\n"+formatAPKDate(car.vervaldatum_apk)
-                    //textView.text = returnText
+                    Log.d("Car", car.toString())
+                    var returnText = licenseplate + "\n" +car.merk + "\n" +car.handelsbenaming+"\n"+car.brandstof+"\n"+car.inrichting+"\n"+formatAPKDate(car.vervaldatum_apk)
+                    textView.text = returnText
 
 //                    //hide loader
 //                    loading.visibility = View.GONE
-//
-//                    //labels
-//                    var labels = findViewById<TextView>(R.id.textLabels)
-//                    labels.visibility = View.VISIBLE
-//
-//
-//                    //show premie button
+
+                    //labels
+                    var labels = findViewById<TextView>(R.id.retrieved_info_labels)
+                    labels.visibility = View.VISIBLE
+
+
+                    //show premie button
 //                    var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
 //                    premieBtn.visibility = View.VISIBLE
                 }
