@@ -27,6 +27,7 @@
     <Button
         android:id="@+id/buyCar"
         style="@style/CustomButton"
+        android:drawableLeft="@drawable/button_car_xml"
         android:text="@string/buy_car"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

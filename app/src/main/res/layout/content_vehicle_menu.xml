@@ -11,6 +11,7 @@
     <Button
         android:id="@+id/retrieve_vehicle_info"
         style="@style/CustomButton"
+        android:drawableLeft="@drawable/button_car_xml"
         android:text="@string/retrieve_vehicle_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

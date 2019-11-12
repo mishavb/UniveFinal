@@ -65,7 +65,9 @@
         android:layout_width="400dp"
         android:layout_height="98dp"
         android:layout_marginTop="81dp"
+        android:drawableLeft="@drawable/button_camera_xml"
         android:text="@string/scan_with_camera"
+        android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

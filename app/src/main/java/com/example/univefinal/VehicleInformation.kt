@@ -137,6 +137,13 @@ class VehicleInformation : AppCompatActivity() {
                     if(car["zuinigheidslabel"] == null)
                         car["zuinigheidslabel"] = "Onbekend"
 
+                    var bpm = ""
+                    if(car["bruto_bpm"] == null)
+                        bpm = "Niet bekend"
+                    else {
+                        bpm = "€"+car["bruto_bpm"]
+                    }
+
                     var returnText =
                             car["merk"] +
                             "\n"+car["handelsbenaming"]+
@@ -149,7 +156,7 @@ class VehicleInformation : AppCompatActivity() {
                             "\n"+car["eerste_kleur"]+
                             "\n"+formatAPKDate(car["vervaldatum_apk"])+
                             "\n"+formatAPKDate(car["datum_eerste_afgifte_nederland"])+
-                            "\n €"+car["bruto_bpm"]
+                            "\n"+bpm
 
                     textView.text = returnText
 
