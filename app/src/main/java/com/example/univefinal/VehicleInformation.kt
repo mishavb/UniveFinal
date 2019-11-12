@@ -13,12 +13,9 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.beust.klaxon.JsonReader
-import com.beust.klaxon.Klaxon
 import kotlinx.android.synthetic.main.activity_vehicle_information.*
 import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.uiThread
-import java.io.StringReader
 import java.net.URL
 
 class VehicleInformation : AppCompatActivity() {
@@ -141,7 +138,6 @@ class VehicleInformation : AppCompatActivity() {
             uiThread {
                 var car = convertJSONtoLicenseplate(apiResult)
                 if(car != null) {
-//                    Log.d("Car", car.toString())
                     var returnText = licenseplate + "\n" + car["merk"] + "\n" +car["handelsbenaming"]+"\n"+car["brandstof"]+"\n"+car["inrichting"]+"\n"+formatAPKDate(car["vervaldatum_apk"])
                     textView.text = returnText
 
