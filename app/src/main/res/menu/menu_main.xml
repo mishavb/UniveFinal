@@ -6,6 +6,6 @@
     <item
         android:id="@+id/to_main_menu"
         android:title="Naar hoofdmenu"
-        android:icon="@drawable/button_close"
+        android:icon="@drawable/close_button"
         app:showAsAction="always" />
 </menu>
