@@ -16,10 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#FFFFFF"
+            app:navigationIcon="@drawable/nav_back_dark"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:theme="@style/ToolbarTheme"
-            app:navigationIcon="@drawable/back_button"
-            />
+            app:theme="@style/ToolbarTheme" />
 
 
     </com.google.android.material.appbar.AppBarLayout>
