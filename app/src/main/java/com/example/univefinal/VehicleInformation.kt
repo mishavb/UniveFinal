@@ -141,8 +141,6 @@ class VehicleInformation : AppCompatActivity() {
                     if(car["zuinigheidslabel"] == null)
                         car["zuinigheidslabel"] = "Onbekend"
 
-
-
                     var returnText =
                             car["merk"] +
                             "\n"+car["handelsbenaming"]+

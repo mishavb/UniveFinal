@@ -160,32 +160,34 @@ class LicensePlateScan : AppCompatActivity() {
             }
     }
 
-    //TODO: stronger validation based on regexp
-    private fun validLicensePlate(licensePlate : String) : Boolean {
-        val ch = '-'
-        var frequency = 0
+    fun validLicensePlate(licensePlate : String) : Boolean
+    {
+        val LP = licensePlate.replace("-", "").replace("-", "")
+        val regexArray = arrayOf(
+            Regex("/^([A-Z]{2})(\\d{2})(\\d{2})$/"),  // 1     XX-99-99    (since 1951)
+            Regex("/^(\\d{2})(\\d{2})([A-Z]{2})$"), // 2     99-99-XX    (since 1965)
+            Regex("^(\\d{2})([A-Z]{2})(\\d{2})$"),  // 3     99-XX-99    (since 1973)
+            Regex("^([A-Z]{2})(\\d{2})([A-Z]{2})$"), // 4     XX-99-XX    (since 1978)
+            Regex("^([A-Z]{2})([A-Z]{2})(\\d{2})$"),  // 5     XX-XX-99    (since 1991)
+            Regex("^(\\d{2})([A-Z]{2})([A-Z]{2})$"),  // 6     99-XX-XX    (since 1999)
+            Regex("^(\\d{2})([A-Z]{3})(\\d{1})$"), // 7     99-XXX-9    (since 2005)
+            Regex("^(\\d{1})([A-Z]{3})(\\d{2})$"), // 8     9-XXX-99    (since 2009)
+            Regex("^([A-Z]{2})(\\d{3})([A-Z]{1})$"),  // 9     XX-999-X    (since 2006)
+            Regex("^([A-Z]{1})(\\d{3})([A-Z]{2})$"),  // 10    X-999-XX    (since 2008)
+            Regex("^([A-Z]{3})(\\d{2})([A-Z]{1})$"), // 11    XXX-99-X    (since 2015)
+            Regex("^([A-Z]{1})(\\d{2})([A-Z]{3})$"),  // 12    X-99-XXX
+            Regex("^(\\d{1})([A-Z]{2})(\\d{3})$"),  // 13    9-XX-999
+            Regex("^(\\d{3})([A-Z]{2})(\\d{1})$"))  // 14    999-XX-9
 
-        //check if char 3 = space (1,2 or 3 version of plate
-
-        //find occurence of ch in licensePlate
-        for (i in 0..licensePlate.length - 1) {
-            if (ch == licensePlate[i]) {
-                ++frequency
+        var found = false
+        for(regexp in regexArray) {
+            if(LP.matches(regexp))
+            {
+                found = true
             }
         }
 
-        if(licensePlate.length == 8) {
-            //if slot 3 = empty or dash
-            if(licensePlate.substring(2,3) == " ") {
-                return true
-            }
-
-            if(frequency == 2) {
-                return true
-            }
-        }
-
-        return false
+        return found
     }
 
     private fun processResultText(resultText: FirebaseVisionText) {
@@ -197,10 +199,11 @@ class LicensePlateScan : AppCompatActivity() {
         }
         var blockText = ""
         for (block in resultText.textBlocks) {
-            if(validLicensePlate(block.text))
+            if(validLicensePlate(block.text) && block.text != "No Text")
             {
                 var value = block.text.replace(" ", "-")
-                blockText = value            }
+                blockText = value
+            }
         }
         val licenseView = findViewById<ImageView>(R.id.licenseView)
 
