@@ -27,7 +27,7 @@
 
     <ImageView
         android:id="@+id/licensePicture"
-        android:background="#EEEEEE"
+        android:background="@drawable/placehold_license"
         android:layout_width="370dp"
         android:layout_height="232dp"
         android:layout_marginStart="20dp"
@@ -107,18 +107,18 @@
         android:id="@+id/relButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="340dp"
-        android:layout_marginLeft="340dp"
+        android:layout_marginStart="344dp"
+        android:layout_marginLeft="344dp"
         android:layout_marginTop="258dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/chooseSource"
-            android:layout_width="44dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/button_camera"
+            android:drawableLeft="@drawable/button_camera_xml"
             android:gravity="clip_horizontal|center"
             android:text="" />
     </RelativeLayout>

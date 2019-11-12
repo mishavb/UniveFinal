@@ -126,6 +126,8 @@ class LicensePlateScan : AppCompatActivity() {
                 val contentURI = data.data
                 try {
                     val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
+
+                    imageview.background = null
                     imageview.setImageBitmap(bitmap)
 
                     fetchLicensePlateFromBitmap(bitmap)
@@ -139,6 +141,7 @@ class LicensePlateScan : AppCompatActivity() {
 
         } else if (requestCode == CAMERA) {
             val thumbnail = data!!.extras!!.get("data") as Bitmap
+            imageview.background = null
             imageview.setImageBitmap(thumbnail)
 
             fetchLicensePlateFromBitmap(thumbnail)
