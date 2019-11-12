@@ -77,7 +77,6 @@ class AppMethods {
                     .append("-")
                     .append(LP.substring(5,6))
             }
-            Log.d("str", builder.toString())
             return builder.toString()
         }
     }
