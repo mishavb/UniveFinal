@@ -13,10 +13,12 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.beust.klaxon.JsonReader
 import com.beust.klaxon.Klaxon
 import kotlinx.android.synthetic.main.activity_vehicle_information.*
 import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.uiThread
+import java.io.StringReader
 import java.net.URL
 
 class VehicleInformation : AppCompatActivity() {
@@ -84,11 +86,29 @@ class VehicleInformation : AppCompatActivity() {
         return formattedAPKDay+"-"+formattedAPKMonth+"-"+formattedAPKYear
     }
 
-    fun convertJSONtoLicenseplate(jsonArray: String) : LicensePlate? {
-        val resultArray = Klaxon().parseArray<LicensePlate>(jsonArray)
-        if(resultArray != null && resultArray.isNotEmpty()) {
-            val car = resultArray?.get(0)
-            return car
+    fun convertJSONtoLicenseplate(jsonArray: String) : MutableMap<String, String?>? {
+        val map = mutableMapOf<String, String?>()
+
+        //replace array chars
+        val stripArray = jsonArray.replace("[", "").replace("]", "")
+        if(stripArray != null)
+        {
+            //replace obj chars
+            val stripObject = stripArray.replace("{", "").replace("}", "")
+            //split on key-val
+            val keyValPairs = stripObject.split(",")
+
+            //loop through key value string array and get key and value
+            for (row in keyValPairs)
+            {
+                val keyValPair = row.split(":")
+                val keyString = keyValPair[0].replace("\"", "").replace("\"", "")
+                val valueString = keyValPair[1].replace("\"", "").replace("\"", "")
+
+                //add to map
+                map.put(keyString, valueString)
+            }
+            return map
         }
         else {
             return null
@@ -116,11 +136,13 @@ class VehicleInformation : AppCompatActivity() {
         async{
             val apiURL = "https://opendata.rdw.nl/api/id/m9d7-ebf2.json?\$query=select%20%2A%20search%20%27$licensePlateFormatted%27%20limit%20100&\$\$query_timeout_seconds=3"
             val apiResult = getJsonFromURL(apiURL)
-            var car = convertJSONtoLicenseplate(apiResult)
+            Log.d("Result", apiResult)
+
             uiThread {
+                var car = convertJSONtoLicenseplate(apiResult)
                 if(car != null) {
-                    Log.d("Car", car.toString())
-                    var returnText = licenseplate + "\n" +car.merk + "\n" +car.handelsbenaming+"\n"+car.brandstof+"\n"+car.inrichting+"\n"+formatAPKDate(car.vervaldatum_apk)
+//                    Log.d("Car", car.toString())
+                    var returnText = licenseplate + "\n" + car["merk"] + "\n" +car["handelsbenaming"]+"\n"+car["brandstof"]+"\n"+car["inrichting"]+"\n"+formatAPKDate(car["vervaldatum_apk"])
                     textView.text = returnText
 
                     //hide loader
