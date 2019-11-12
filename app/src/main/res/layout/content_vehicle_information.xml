@@ -45,7 +45,7 @@
     <TextView
         android:id="@+id/retrieved_info"
         android:layout_width="181dp"
-        android:layout_height="137dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginLeft="13dp"
         android:layout_marginTop="12dp"
@@ -62,12 +62,12 @@
     <TextView
         android:id="@+id/retrieved_info_labels"
         android:layout_width="173dp"
-        android:layout_height="136dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Kenteken\nMerk \nType\nBrandstof\nInrichting\nAPK"
+        android:text="@string/vehicle_titles"
         android:textColor="#505050"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -75,6 +75,30 @@
         app:layout_constraintEnd_toStartOf="@+id/retrieved_info"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/buttonCalcPremie"
+        android:layout_width="400dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="5dp"
+        android:background="#949DFB"
+        android:drawableRight="@drawable/navforward_button"
+        android:drawablePadding="20dip"
+        android:fontFamily="@font/open_sans_semibold"
+        android:gravity="left|center"
+        android:paddingLeft="30dp"
+        android:text="Premie berekenen"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RelativeLayout
         android:id="@+id/loader"

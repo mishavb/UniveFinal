@@ -25,4 +25,5 @@ class LicensePlate {
         this.massa_ledig_voertuig = massa_ledig_voertuig
         this.cilinderinhoud = cilinderinhoud
     }
+
 }
