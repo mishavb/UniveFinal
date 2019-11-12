@@ -128,17 +128,34 @@ class VehicleInformation : AppCompatActivity() {
         loading.visibility = View.VISIBLE
 
         val licensePlateFormatted = licenseplate.replace("-", "")
-        Log.d("Plate:", licensePlateFormatted)
 
         async{
             val apiURL = "https://opendata.rdw.nl/api/id/m9d7-ebf2.json?\$query=select%20%2A%20search%20%27$licensePlateFormatted%27%20limit%20100&\$\$query_timeout_seconds=3"
             val apiResult = getJsonFromURL(apiURL)
-            Log.d("Result", apiResult)
 
             uiThread {
                 var car = convertJSONtoLicenseplate(apiResult)
+                Log.d("all", car.toString())
                 if(car != null) {
-                    var returnText = licenseplate + "\n" + car["merk"] + "\n" +car["handelsbenaming"]+"\n"+car["brandstof"]+"\n"+car["inrichting"]+"\n"+formatAPKDate(car["vervaldatum_apk"])
+                    if(car["zuinigheidslabel"] == null)
+                        car["zuinigheidslabel"] = "Onbekend"
+
+
+
+                    var returnText =
+                            car["merk"] +
+                            "\n"+car["handelsbenaming"]+
+                            "\n"+licenseplate +
+                            "\n"+car["inrichting"]+
+                            "\n"+car["uitvoering"]+
+                            "\n"+car["zuinigheidslabel"]+
+                            "\n"+car["voertuigsoort"]+
+                            "\n"+car["aantal_deuren"]+
+                            "\n"+car["eerste_kleur"]+
+                            "\n"+formatAPKDate(car["vervaldatum_apk"])+
+                            "\n"+formatAPKDate(car["datum_eerste_afgifte_nederland"])+
+                            "\n €"+car["bruto_bpm"]
+
                     textView.text = returnText
 
                     //hide loader

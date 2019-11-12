@@ -45,7 +45,7 @@
     <TextView
         android:id="@+id/retrieved_info"
         android:layout_width="181dp"
-        android:layout_height="137dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginLeft="13dp"
         android:layout_marginTop="12dp"
@@ -62,12 +62,12 @@
     <TextView
         android:id="@+id/retrieved_info_labels"
         android:layout_width="173dp"
-        android:layout_height="136dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Kenteken\nMerk \nType\nBrandstof\nInrichting\nAPK"
+        android:text="@string/vehicle_titles"
         android:textColor="#505050"
         android:textSize="14sp"
         android:textStyle="bold"

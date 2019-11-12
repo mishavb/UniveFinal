@@ -16,4 +16,5 @@
     <string name="title_activity_vehicle_information">Uw auto</string>
     <string name="scan_with_camera">Scan het kenteken met uw camera</string>
     <string name="what_we_found">Dit is wat we over uw auto hebben gevonden:</string>
+    <string name="vehicle_titles">Fabrikant:\nMerk:\nKenteken:\nInrichting:\nUitvoering:\nEnergieklasse:\nType:\nAantal deuren:\nKleur:\nAPK tot:\nEerste afgifte NL:\nBruto BPM:</string>
 </resources>
