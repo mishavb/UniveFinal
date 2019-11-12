@@ -193,43 +193,46 @@ class LicensePlateScan : AppCompatActivity() {
     private fun processResultText(resultText: FirebaseVisionText) {
         //empty licenseplate text field
         licensePlateText.setText("")
-        if (resultText.textBlocks.size == 0) {
-            licensePlateText.setText("No Text Found")
-            return
-        }
-        var blockText = ""
-        for (block in resultText.textBlocks) {
-            if(validLicensePlate(block.text) && block.text != "No Text")
-            {
-                var value = block.text.replace(" ", "-")
-                blockText = value
-            }
-        }
         val licenseView = findViewById<ImageView>(R.id.licenseView)
-
-        //none found
-        if(blockText == "")
-        {
+        var blockText = ""
+        if (resultText.textBlocks.size == 0) {
             licensePlateText.visibility = View.INVISIBLE
             btnNextStep.visibility = View.INVISIBLE
             licenseView.visibility = View.INVISIBLE
+            return
         }
         else {
-            //show licenceplate graphic
-            licenseView.visibility = View.VISIBLE
+            for (block in resultText.textBlocks) {
+                Log.d("Regeltekst", block.text)
 
-            //add license to textinput
-            licensePlateText.setText(blockText)
-            licensePlateText.visibility = View.VISIBLE
-
-            btnNextStep.setOnClickListener{
-                val intent = Intent(this, VehicleInformation::class.java)
-                intent.putExtra("licenseplate", licensePlateText.text.toString())
-                intent.putExtra("parentView", "scan")
-                startActivityForResult(intent, START_VEHICLE_INFO_REQUEST_CODE)
+                if (validLicensePlate(block.text)) {
+                    var value = block.text.replace(" ", "-")
+                    blockText = value
+                }
             }
 
-            btnNextStep.visibility = View.VISIBLE
+            //none found
+            if (blockText == "") {
+                licensePlateText.visibility = View.INVISIBLE
+                btnNextStep.visibility = View.INVISIBLE
+                licenseView.visibility = View.INVISIBLE
+            } else {
+                //show licenceplate graphic
+                licenseView.visibility = View.VISIBLE
+
+                //add license to textinput
+                licensePlateText.setText(blockText)
+                licensePlateText.visibility = View.VISIBLE
+
+                btnNextStep.setOnClickListener {
+                    val intent = Intent(this, VehicleInformation::class.java)
+                    intent.putExtra("licenseplate", licensePlateText.text.toString())
+                    intent.putExtra("parentView", "scan")
+                    startActivityForResult(intent, START_VEHICLE_INFO_REQUEST_CODE)
+                }
+
+                btnNextStep.visibility = View.VISIBLE
+            }
         }
     }
 
