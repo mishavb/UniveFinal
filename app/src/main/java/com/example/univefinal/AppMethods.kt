@@ -1,5 +1,11 @@
 package com.example.univefinal
 
+import android.content.Context
+import android.content.Intent
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+
 class AppMethods {
     companion object {
         fun validLicensePlate(licensePlate : String) : Int
@@ -32,6 +38,16 @@ class AppMethods {
             }
 
             return found
+        }
+
+        fun returnToMainMenu(id : Int, context : Context) {
+            if (id == R.id.to_main_menu) {
+                val intent = Intent(context, MainActivity::class.java)
+
+                //return to MainActivity
+                context.startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+
+            }
         }
     }
 }

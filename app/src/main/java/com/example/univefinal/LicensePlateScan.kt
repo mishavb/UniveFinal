@@ -19,6 +19,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.univefinal.AppMethods.Companion.returnToMainMenu
 import com.example.univefinal.AppMethods.Companion.validLicensePlate
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
@@ -70,11 +71,7 @@ class LicensePlateScan : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here.
         val id = item.itemId
-
-        if (id == R.id.to_main_menu) {
-            Toast.makeText(this, "To Main menu", Toast.LENGTH_LONG).show()
-            return true
-        }
+        returnToMainMenu(id, this)
 
         return super.onOptionsItemSelected(item)
     }
