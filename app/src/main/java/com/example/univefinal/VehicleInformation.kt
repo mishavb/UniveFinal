@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -167,8 +168,8 @@ class VehicleInformation : AppCompatActivity() {
 
 
                     //show premie button
-//                    var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
-//                    premieBtn.visibility = View.VISIBLE
+                    var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
+                    premieBtn.visibility = View.VISIBLE
                 } else {
                     returnToPreviousActivity()
                 }
