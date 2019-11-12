@@ -158,8 +158,6 @@ class LicensePlateScan : AppCompatActivity() {
             }
     }
 
-
-
     private fun processResultText(resultText: FirebaseVisionText) {
         //empty licenseplate text field
         licensePlateText.setText("")

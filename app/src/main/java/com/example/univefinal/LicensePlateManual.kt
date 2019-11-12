@@ -4,17 +4,21 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import com.example.univefinal.AppMethods.Companion.formatLicenseForDisplay
 
 import kotlinx.android.synthetic.main.activity_license_plate_manual.*
 import kotlinx.android.synthetic.main.content_license_plate_manual.*
+import android.text.InputFilter
+
 
 class LicensePlateManual : AppCompatActivity() {
     companion object {
@@ -34,15 +38,39 @@ class LicensePlateManual : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
 
+        val licenseplateinput = findViewById<EditText>(R.id.license_plate_input)
+
+        licenseplateinput.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                val str = licenseplateinput.text.toString()
+                if(str.length == 6 || str.length == 8){
+                    val pos = AppMethods.validLicensePlate(str)
+                    Log.d("pos", pos.toString())
+                    if(pos != 0){
+                        val newstr = formatLicenseForDisplay(pos, str)
+                        if(str != newstr){
+                            licenseplateinput.setText(newstr)
+                        }
+                    }
+                }
+            }
+        })
         //button actions
         val retrieveVehicleInfo = findViewById<Button>(R.id.vehicle_information)
         retrieveVehicleInfo.setOnClickListener{
-            val licenseplateinput = findViewById<EditText>(R.id.license_plate_input)
             val licenseplatetext = licenseplateinput.text.toString()
             val errorlabel = findViewById<TextView>(R.id.errorlabel)
             errorlabel.text = ""
 
-            if(validateLicensePlate(licenseplatetext)) {
+            if(AppMethods.validLicensePlate(licenseplatetext) != 0) {
                 val intent = Intent(this, VehicleInformation::class.java)
                 intent.putExtra("licenseplate", licenseplatetext)
                 intent.putExtra("parentView", "manual")
@@ -85,16 +113,6 @@ class LicensePlateManual : AppCompatActivity() {
         AppMethods.returnToMainMenu(id, this)
 
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun validateLicensePlate(licenseplate : String) : Boolean {
-        val check = "-"
-        if(licenseplate.length != 8) {
-            return false
-        } else if (licenseplate.count{ check.contains(it) } != 2){
-            return false
-        }
-        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {

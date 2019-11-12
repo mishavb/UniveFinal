@@ -2,6 +2,7 @@ package com.example.univefinal
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
@@ -12,8 +13,8 @@ class AppMethods {
         {
             val LP = licensePlate.replace("-", "").replace("-", "")
             val regexArray = arrayOf(
-                Regex("/^([A-Z]{2})(\\d{2})(\\d{2})$/"),  // 1     XX-99-99    (since 1951)
-                Regex("/^(\\d{2})(\\d{2})([A-Z]{2})$"), // 2     99-99-XX    (since 1965)
+                Regex("^([A-Z]{2})(\\d{2})(\\d{2})$"),  // 1     XX-99-99    (since 1951)
+                Regex("^(\\d{2})(\\d{2})([A-Z]{2})$"), // 2     99-99-XX    (since 1965)
                 Regex("^(\\d{2})([A-Z]{2})(\\d{2})$"),  // 3     99-XX-99    (since 1973)
                 Regex("^([A-Z]{2})(\\d{2})([A-Z]{2})$"), // 4     XX-99-XX    (since 1978)
                 Regex("^([A-Z]{2})([A-Z]{2})(\\d{2})$"),  // 5     XX-XX-99    (since 1991)
@@ -48,6 +49,40 @@ class AppMethods {
                 context.startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
 
             }
+        }
+
+        fun formatLicenseForDisplay(pos : Int, licensePlate : String) : String{
+            val LP = licensePlate.replace("-", "").replace("-", "")
+            val builder = StringBuilder()
+            when(pos) {
+                1, 2, 3, 4, 5, 6 -> builder.append(LP.substring(0,2))
+                    .append("-")
+                    .append(LP.substring(2,4))
+                    .append("-")
+                    .append(LP.substring(4,6))
+                7, 9 -> builder.append(LP.substring(0,2))
+                    .append("-")
+                    .append(LP.substring(2,5))
+                    .append("-")
+                    .append(LP.substring(5, 6))
+                8, 10 -> builder.append(LP.substring(0,1))
+                    .append("-")
+                    .append(LP.substring(1,4))
+                    .append("-")
+                    .append(LP.substring(4,6))
+                12, 13 -> builder.append(LP.substring(0,1))
+                    .append("-")
+                    .append(LP.substring(1,3))
+                    .append("-")
+                    .append(LP.substring(3,6))
+                11, 14 -> builder.append(LP.substring(0,3))
+                    .append("-")
+                    .append(LP.substring(3,5))
+                    .append("-")
+                    .append(LP.substring(5,6))
+            }
+            Log.d("str", builder.toString())
+            return builder.toString()
         }
     }
 }

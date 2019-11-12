@@ -91,18 +91,20 @@ class VehicleInformation : AppCompatActivity() {
             val stripObject = stripArray.replace("{", "").replace("}", "")
             //split on key-val
             val keyValPairs = stripObject.split(",")
+            if(keyValPairs.size > 1) {
+                //loop through key value string array and get key and value
+                for (row in keyValPairs) {
+                    val keyValPair = row.split(":")
+                    val keyString = keyValPair[0].replace("\"", "").replace("\"", "")
+                    val valueString = keyValPair[1].replace("\"", "").replace("\"", "")
 
-            //loop through key value string array and get key and value
-            for (row in keyValPairs)
-            {
-                val keyValPair = row.split(":")
-                val keyString = keyValPair[0].replace("\"", "").replace("\"", "")
-                val valueString = keyValPair[1].replace("\"", "").replace("\"", "")
-
-                //add to map
-                map.put(keyString, valueString)
+                    //add to map
+                    map.put(keyString, valueString)
+                }
+                return map
+            } else {
+                return null
             }
-            return map
         }
         else {
             return null
