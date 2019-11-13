@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
-
         //button actions
         val buyCar = findViewById<Button>(R.id.buyCar)
         buyCar.setOnClickListener{

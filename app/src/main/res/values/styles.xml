@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- remove dropshadows for pre 5.0 android devices-->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- remove dropshadows for android 5.0 and up -->
+        <item name="elevation">0dp</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -24,7 +28,7 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="CustomButton" parent="@style/Widget.AppCompat.Button">
+    <style name="CustomButton" parent="@style/Widget.AppCompat.Button.Borderless">
         <item name="android:layout_width">409dp</item>
         <item name="android:layout_height">100dp</item>
         <item name="android:layout_marginTop">-1dp</item>
@@ -40,6 +44,8 @@
         <item name="android:textColor">#505050</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:longClickable">false</item>
     </style>
 
 </resources>

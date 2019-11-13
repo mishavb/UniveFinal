@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape
-            android:shape="rectangle">
-            <stroke android:width="0.5px" android:color="#FFDDDDDD" />
-            <solid android:color="#FFFFFF" />
+    <item android:drawable="@drawable/ripple_effect" />
 
+    <item android:right="-1dp" android:left="-20dp">
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="0.5dp"
+                android:color="#FFDDDDDD" />
         </shape>
     </item>
-
-
 </layer-list>
+

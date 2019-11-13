@@ -16,7 +16,7 @@
         android:fontFamily="@font/bree_serif"
         android:text="@string/title_vehicle_info"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
+        android:textSize="@dimen/titleTextSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -40,11 +40,14 @@
 
     <EditText
         android:id="@+id/license_plate_input"
-        android:layout_width="187dp"
-        android:layout_height="77dp"
+        android:layout_width="189dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:fontFamily="@font/open_sans_bold"
+        android:gravity="center"
         android:inputType="textCapCharacters"
         android:maxLength="8"
         android:singleLine="false"
@@ -55,7 +58,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintVertical_bias="0.473" />
 
     <Button
         android:id="@+id/retrieve_vehicle_info3"
@@ -76,7 +79,6 @@
         android:layout_height="62dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
-        android:layout_marginTop="255dp"
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="5dp"
@@ -92,8 +94,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/errorlabel"

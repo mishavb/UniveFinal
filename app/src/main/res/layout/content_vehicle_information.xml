@@ -18,7 +18,7 @@
         android:fontFamily="@font/bree_serif"
         android:text="@string/title_activity_vehicle_information"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
+        android:textSize="@dimen/titleTextSize"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

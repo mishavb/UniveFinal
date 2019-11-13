@@ -58,6 +58,7 @@ class LicensePlateManual : AppCompatActivity() {
                         val newstr = formatLicenseForDisplay(pos, str)
                         if(str != newstr){
                             licenseplateinput.setText(newstr)
+                            licenseplateinput.setSelection(newstr.length)
                         }
                     }
                 }
@@ -94,7 +95,7 @@ class LicensePlateManual : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 val errorToken = data!!.getIntExtra("errorToken", 0)
                 if(errorToken == 1){
-                    errorlabel.text = "Voor dit kenteken zijn geen gegevens beschikbaar"
+                    errorlabel.text = "Voor dit kenteken zijn geen gegevens\nbeschikbaar."
                 }
             }
         } else {
