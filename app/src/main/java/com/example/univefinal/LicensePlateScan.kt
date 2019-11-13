@@ -136,9 +136,7 @@ class LicensePlateScan : AppCompatActivity() {
                     e.printStackTrace()
                     Log.d("Status:", "FAILED")
                 }
-
             }
-
         } else if (requestCode == CAMERA) {
             val thumbnail = data!!.extras!!.get("data") as Bitmap
             imageview.background = null
