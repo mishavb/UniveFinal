@@ -26,7 +26,7 @@
         android:fontFamily="@font/bree_serif"
         android:text="@string/vehicle_menu_heading"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
+        android:textSize="@dimen/titleTextSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintLeft_toLeftOf="parent"
