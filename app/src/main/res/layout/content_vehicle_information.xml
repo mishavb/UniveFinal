@@ -40,7 +40,7 @@
     <TextView
         android:id="@+id/retrieved_info"
         android:layout_width="181dp"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:layout_marginStart="13dp"
         android:layout_marginLeft="13dp"
         android:layout_marginTop="12dp"
@@ -57,7 +57,7 @@
     <TextView
         android:id="@+id/retrieved_info_labels"
         android:layout_width="173dp"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="12dp"
@@ -111,6 +111,24 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"></ProgressBar>
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/read_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="19dp"
+        android:background="@null"
+        android:fontFamily="@font/open_sans"
+        android:padding="0dp"
+        android:text="@string/readmore"
+        android:textAllCaps="false"
+        android:textColor="#949bff"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/retrieved_info_labels" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

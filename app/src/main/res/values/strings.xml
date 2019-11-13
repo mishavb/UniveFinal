@@ -18,4 +18,5 @@
     <string name="what_we_found">Dit is wat we over uw auto hebben gevonden:</string>
     <string name="vehicle_titles">Fabrikant:\nMerk:\nKenteken:\nInrichting:\nUitvoering:\nEnergieklasse:\nType:\nAantal deuren:\nKleur:\nAPK tot:\nEerste afgifte NL:\nBruto BPM:</string>
     <string name="instructions">Scan uw kenteken met de camera.\nDe Univé app herkent uw kenteken.\nIndien het scannen met uw camera niet lukt,\n voer dan uw kenteken handmatig in.</string>
+    <string name="readmore">Meer informatie</string>
 </resources>

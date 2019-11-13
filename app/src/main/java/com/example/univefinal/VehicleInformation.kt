@@ -9,15 +9,19 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.view.ViewGroup
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_vehicle_information.*
 import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.uiThread
 import java.net.URL
+import android.widget.LinearLayout
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.constraintlayout.widget.ConstraintLayout
+
 
 class VehicleInformation : AppCompatActivity() {
     private var parentView : String = ""
@@ -40,6 +44,24 @@ class VehicleInformation : AppCompatActivity() {
         val infoTextView = findViewById<TextView>(R.id.retrieved_info)
         parentView = intent.getStringExtra("parentView")
         loadVehicleData(strLicenseplate, infoTextView)
+
+        //readmore button
+        val readmore = findViewById<Button>(R.id.read_more)
+        val info = findViewById<TextView>(R.id.retrieved_info)
+        val labels = findViewById<TextView>(R.id.retrieved_info_labels)
+
+        readmore.setOnClickListener{
+            if(readmore.text == "Meer informatie") { //expand
+                readmore.text = "Minder informatie"
+                info.layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
+                labels.layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
+
+            } else {
+                readmore.text = "Meer informatie" //collapse
+                info.layoutParams.height = 130
+                labels.layoutParams.height = 130
+            }
+        }
     }
 
     override fun onBackPressed() {
