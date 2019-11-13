@@ -50,16 +50,23 @@ class VehicleInformation : AppCompatActivity() {
         val info = findViewById<TextView>(R.id.retrieved_info)
         val labels = findViewById<TextView>(R.id.retrieved_info_labels)
 
+        //collapse height
+        val oneLineHeight = (labels.getPaint().getFontMetrics().bottom - labels.getPaint().getFontMetrics().top).toInt()
+
+        //set init height
+        info.layoutParams.height = (oneLineHeight * 5)+5
+        labels.layoutParams.height = (oneLineHeight * 5)+5
+
         readmore.setOnClickListener{
-            if(readmore.text == "Meer informatie") { //expand
-                readmore.text = "Minder informatie"
+            if(readmore.text == "Toon meer informatie") { //expand
+                readmore.text = "Toon minder informatie"
                 info.layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
                 labels.layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
 
             } else {
-                readmore.text = "Meer informatie" //collapse
-                info.layoutParams.height = 130
-                labels.layoutParams.height = 130
+                readmore.text = "Toon meer informatie" //collapse
+                info.layoutParams.height = (oneLineHeight * 5)+5
+                labels.layoutParams.height = (oneLineHeight * 5)+5
             }
         }
     }
