@@ -1,14 +1,21 @@
 package com.example.univefinal
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_license_error.*
 
 import kotlinx.android.synthetic.main.activity_network_error.*
 import kotlinx.android.synthetic.main.activity_network_error.toolbar
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class NetworkError : AppCompatActivity() {
 
@@ -30,13 +37,14 @@ class NetworkError : AppCompatActivity() {
 
         val tryAgain = findViewById<Button>(R.id.tryAgain)
         tryAgain.setOnClickListener{
-            onBackPressed()
+            if(AppMethods.isOnline(this)){
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
-
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+    override fun onBackPressed() {
+        return
     }
 
 }
