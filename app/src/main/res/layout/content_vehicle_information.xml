@@ -74,6 +74,7 @@
 
     <Button
         android:id="@+id/buttonCalcPremie"
+        style="@style/NavForwardButtonPurple"
         android:layout_width="400dp"
         android:layout_height="62dp"
         android:layout_marginStart="2dp"
@@ -81,7 +82,7 @@
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="5dp"
-        style="@style/NavForwardButtonPurple"
+        android:text="Bereken uw premie"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
