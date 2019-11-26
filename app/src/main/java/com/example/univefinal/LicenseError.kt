@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
-import kotlinx.android.synthetic.main.activity_vehicle_menu.*
-import kotlinx.android.synthetic.main.activity_vehicle_menu.toolbar
+import kotlinx.android.synthetic.main.activity_license_error.*
+import kotlinx.android.synthetic.main.activity_license_error.toolbar
+import kotlinx.android.synthetic.main.activity_license_plate_manual.*
 
-class VehicleMenu : AppCompatActivity() {
+class LicenseError : AppCompatActivity() {
+
     override fun onStart() {
         super.onStart()
 
@@ -26,7 +26,7 @@ class VehicleMenu : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_vehicle_menu)
+        setContentView(R.layout.activity_license_error)
         setSupportActionBar(toolbar)
 
 
@@ -39,28 +39,11 @@ class VehicleMenu : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
 
-        //button actions
-        val retrieveVehicleInfo = findViewById<Button>(R.id.retrieve_vehicle_info)
-        retrieveVehicleInfo.setOnClickListener{
-            val intent = Intent(this, LicensePlateManual::class.java)
-            startActivity(intent)
+        val tryAgain = findViewById<Button>(R.id.tryAgain)
+        tryAgain.setOnClickListener{
+            onBackPressed()
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here.
-        val id = item.itemId
-
-        AppMethods.returnToMainMenu(id, this)
-
-        return super.onOptionsItemSelected(item)
-    }
-
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

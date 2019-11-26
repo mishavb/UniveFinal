@@ -21,6 +21,16 @@ import android.text.InputFilter
 
 
 class LicensePlateManual : AppCompatActivity() {
+
+    override fun onStart() {
+        super.onStart()
+
+        if(!AppMethods.isOnline(this)){
+            val intent = Intent(this, NetworkError::class.java)
+            startActivity(intent)
+        }
+    }
+
     companion object {
         const val START_VEHICLE_INFO_REQUEST_CODE = 0
     }

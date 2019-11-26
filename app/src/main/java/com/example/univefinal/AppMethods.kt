@@ -2,9 +2,21 @@ package com.example.univefinal
 
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
+import com.example.univefinal.AppMethods.Companion.isConnectedToNetwork
+
 
 class AppMethods {
     companion object {
+        // The next line should be the first statement in the file
+
+        fun Context.isConnectedToNetwork(): Boolean {
+            val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+            return connectivityManager?.activeNetworkInfo?.isConnectedOrConnecting() ?: false
+        }
+
         fun validLicensePlate(licensePlate : String) : Int
         {
             val LP = licensePlate.replace("-", "").replace("-", "")
@@ -79,5 +91,18 @@ class AppMethods {
             }
             return builder.toString()
         }
+
+        fun isOnline(context : Context) : Boolean{
+            if (context.isConnectedToNetwork()) {
+                Log.d("----- Online -----", "yes")
+                return true
+            } else {
+                // Show disconnected screen
+                Log.d("----- Online -----", "no")
+                return false
+            }
+        }
+
     }
+
 }

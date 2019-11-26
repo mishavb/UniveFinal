@@ -14,12 +14,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.*
+import com.example.univefinal.AppMethods.Companion.isConnectedToNetwork
+import com.example.univefinal.AppMethods.Companion.isOnline
 
 
 class MainActivity : AppCompatActivity() {
+
+    override fun onStart() {
+        super.onStart()
+
+        if(!isOnline(this)){
+            val intent = Intent(this, NetworkError::class.java)
+            startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +47,21 @@ class MainActivity : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
+
+
         //button actions
         val buyCar = findViewById<Button>(R.id.buyCar)
         buyCar.setOnClickListener{
             val intent = Intent(this, VehicleMenu::class.java)
             startActivity(intent)
         }
+
+        val buyHouse = findViewById<Button>(R.id.buyHouse)
+        buyHouse.setOnClickListener{
+            val intent = Intent(this, LicenseError::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

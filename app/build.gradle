@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
-    ext.anko_version='0.10.8'
+    ext.anko_version = '0.10.8'
     defaultConfig {
         applicationId "com.example.univefinal"
         minSdkVersion 16

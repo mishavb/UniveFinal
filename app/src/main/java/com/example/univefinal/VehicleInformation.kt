@@ -26,6 +26,16 @@ import androidx.constraintlayout.widget.ConstraintLayout
 class VehicleInformation : AppCompatActivity() {
     private var parentView : String = ""
 
+
+    override fun onStart() {
+        super.onStart()
+
+        if(!AppMethods.isOnline(this)){
+            val intent = Intent(this, NetworkError::class.java)
+            startActivity(intent)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vehicle_information)
@@ -140,13 +150,13 @@ class VehicleInformation : AppCompatActivity() {
         }
     }
 
-    private fun returnToPreviousActivity() {
-        val intent = Intent().apply {
-            putExtra("errorToken", 1)
-        }
-        setResult(Activity.RESULT_OK, intent)
-        onBackPressed()
-    }
+//    private fun returnToPreviousActivity() {
+//        val intent = Intent().apply {
+//            putExtra("errorToken", 1)
+//        }
+//        setResult(Activity.RESULT_OK, intent)
+//        onBackPressed()
+//    }
 
     private fun loadVehicleData(licenseplate : String, textView : TextView) {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -172,19 +182,19 @@ class VehicleInformation : AppCompatActivity() {
                     if(car["bruto_bpm"] == null)
                         bpm = "Niet bekend"
                     else {
-                        bpm = "€"+car["bruto_bpm"]
+                        bpm = "€ "+car["bruto_bpm"]
                     }
 
                     var returnText =
-                            car["merk"] +
-                            "\n"+car["handelsbenaming"]+
+                            car["merk"]?.toLowerCase()?.capitalize() +
+                            "\n"+car["handelsbenaming"]?.toLowerCase()?.capitalize()+
                             "\n"+licenseplate +
-                            "\n"+car["inrichting"]+
+                            "\n"+car["inrichting"]?.toLowerCase()?.capitalize()+
                             "\n"+car["uitvoering"]+
                             "\n"+car["zuinigheidslabel"]+
                             "\n"+car["voertuigsoort"]+
                             "\n"+car["aantal_deuren"]+
-                            "\n"+car["eerste_kleur"]+
+                            "\n"+car["eerste_kleur"]?.toLowerCase()?.capitalize()+
                             "\n"+formatAPKDate(car["vervaldatum_apk"])+
                             "\n"+formatAPKDate(car["datum_eerste_afgifte_nederland"])+
                             "\n"+bpm
@@ -203,7 +213,7 @@ class VehicleInformation : AppCompatActivity() {
                     var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
                     premieBtn.visibility = View.VISIBLE
                 } else {
-                    returnToPreviousActivity()
+                    //TODO: inflate LicenseError Activity
                 }
 
             }
