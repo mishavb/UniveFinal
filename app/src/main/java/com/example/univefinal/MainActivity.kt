@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here.
         val id = item.itemId
 
-        AppMethods.returnToMainMenu(id, this)
+//        AppMethods.returnToMainMenu(id, this) //disable on main menu
 
         return super.onOptionsItemSelected(item)
     }

@@ -11,6 +11,11 @@
     <Button
         android:id="@+id/retrieve_vehicle_info"
         style="@style/CustomButton"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/buttonSideMargin"
+        android:layout_marginLeft="@dimen/buttonSideMargin"
+        android:layout_marginEnd="@dimen/buttonSideMargin"
+        android:layout_marginRight="@dimen/buttonSideMargin"
         android:drawableLeft="@drawable/button_car_xml"
         android:text="@string/retrieve_vehicle_info"
         app:layout_constraintEnd_toEndOf="parent"
