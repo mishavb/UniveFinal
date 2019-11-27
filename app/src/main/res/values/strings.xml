@@ -16,7 +16,7 @@
     <string name="title_activity_vehicle_information">Uw auto</string>
     <string name="scan_with_camera">Scan het kenteken met uw camera</string>
     <string name="what_we_found">Dit is wat we over uw auto hebben gevonden:</string>
-    <string name="vehicle_titles">Fabrikant:\nMerk:\nKenteken:\nInrichting:\nUitvoering:\nEnergieklasse:\nType:\nAantal deuren:\nKleur:\nAPK tot:\nEerste afgifte NL:\nBruto BPM:</string>
+    <string name="vehicle_titles">Fabrikant:\nMerk:\nInrichting:\nUitvoering:\nEnergieklasse:\nType:\nAantal deuren:\nKleur:\nAPK tot:\nEerste afgifte NL:\nBruto BPM:</string>
     <string name="instructions">Scan uw kenteken met de camera.\nDe Univé app herkent uw kenteken.\nIndien het scannen met uw camera niet lukt,\n voer dan uw kenteken handmatig in.</string>
     <string name="readmore">Toon meer informatie</string>
     <string name="title_activity_license_error">LicenseError</string>

@@ -21,6 +21,7 @@ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.constraintlayout.widget.ConstraintLayout
+import org.w3c.dom.Text
 
 
 class VehicleInformation : AppCompatActivity() {
@@ -172,6 +173,9 @@ class VehicleInformation : AppCompatActivity() {
         var read_more = findViewById<Button>(R.id.read_more)
         read_more.visibility = View.INVISIBLE
 
+        var textView3 = findViewById<TextView>(R.id.textView3)
+        textView3.visibility = View.INVISIBLE
+
         var loading = findViewById<RelativeLayout>(R.id.loader)
         loading.visibility = View.VISIBLE
 
@@ -187,6 +191,9 @@ class VehicleInformation : AppCompatActivity() {
                 if(car != null) {
                     if(car["zuinigheidslabel"] == null)
                         car["zuinigheidslabel"] = "Onbekend"
+
+                    if(car["uitvoering"] == null)
+                        car["uitvoering"] = "Onbekend"
 
                     var bpm = ""
                     if(car["bruto_bpm"] == null)
@@ -217,10 +224,15 @@ class VehicleInformation : AppCompatActivity() {
                     //show read more
                     read_more.visibility = View.VISIBLE
 
+                    //show what we have found
+                    textView3.visibility = View.VISIBLE
+
                     //labels
                     var labels = findViewById<TextView>(R.id.retrieved_info_labels)
                     labels.visibility = View.VISIBLE
 
+                    var licensePlateInput = findViewById<TextView>(R.id.license_plate_input2)
+                    licensePlateInput.text = licenseplate
 
                     //show premie button
                     var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
