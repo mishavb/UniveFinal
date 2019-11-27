@@ -197,7 +197,6 @@ class VehicleInformation : AppCompatActivity() {
                     var returnText =
                             car["merk"]?.toLowerCase()?.capitalize() +
                             "\n"+car["handelsbenaming"]?.toLowerCase()?.capitalize()+
-                            "\n"+licenseplate +
                             "\n"+car["inrichting"]?.toLowerCase()?.capitalize()+
                             "\n"+car["uitvoering"]+
                             "\n"+car["zuinigheidslabel"]+
