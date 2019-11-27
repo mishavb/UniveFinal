@@ -158,9 +158,19 @@ class VehicleInformation : AppCompatActivity() {
 //        onBackPressed()
 //    }
 
+    private fun licensePlateError() {
+        val intent = Intent(this, LicenseError::class.java)
+        intent.putExtra("parentView", parentView)
+
+        startActivity(intent)
+    }
+
     private fun loadVehicleData(licenseplate : String, textView : TextView) {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
+
+        var read_more = findViewById<Button>(R.id.read_more)
+        read_more.visibility = View.INVISIBLE
 
         var loading = findViewById<RelativeLayout>(R.id.loader)
         loading.visibility = View.VISIBLE
@@ -204,6 +214,9 @@ class VehicleInformation : AppCompatActivity() {
                     //hide loader
                     loading.visibility = View.GONE
 
+                    //show read more
+                    read_more.visibility = View.VISIBLE
+
                     //labels
                     var labels = findViewById<TextView>(R.id.retrieved_info_labels)
                     labels.visibility = View.VISIBLE
@@ -213,7 +226,7 @@ class VehicleInformation : AppCompatActivity() {
                     var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
                     premieBtn.visibility = View.VISIBLE
                 } else {
-                    //TODO: inflate LicenseError Activity
+                    licensePlateError()
                 }
 
             }

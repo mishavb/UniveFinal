@@ -39,7 +39,14 @@ class NetworkError : AppCompatActivity() {
         tryAgain.setOnClickListener{
             if(AppMethods.isOnline(this)){
                 val intent = Intent(this, MainActivity::class.java)
+
+                //start new activity
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.putExtra("EXIT", true)
                 startActivity(intent)
+                finish()
             }
         }
     }
