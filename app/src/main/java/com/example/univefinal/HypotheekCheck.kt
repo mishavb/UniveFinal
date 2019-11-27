@@ -2,29 +2,25 @@ package com.example.univefinal
 
 import android.graphics.Color
 import android.os.Bundle
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_license_error.*
-
-import kotlinx.android.synthetic.main.activity_zorg_check.*
-import kotlinx.android.synthetic.main.activity_zorg_check.toolbar
-import android.webkit.WebSettings
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
 import android.view.View
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.RelativeLayout
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 
+import kotlinx.android.synthetic.main.activity_hypotheek_check.*
+import kotlinx.android.synthetic.main.activity_hypotheek_check.toolbar
+import kotlinx.android.synthetic.main.activity_zorg_check.*
 
-class ZorgCheck : AppCompatActivity() {
+class HypotheekCheck : AppCompatActivity() {
     private lateinit var webView: WebView
+    private var loadCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_zorg_check)
+        setContentView(R.layout.activity_hypotheek_check)
         setSupportActionBar(toolbar)
 
 
@@ -48,29 +44,29 @@ class ZorgCheck : AppCompatActivity() {
         webSettings.setSupportZoom(true)
         webSettings.defaultTextEncodingName = "utf-8"
 
-        webView.loadUrl("https://www.unive.nl/zorgverzekering/zorgcheck/")
+        webView.loadUrl("https://www.unive.nl/hypotheek/")
 
         var loader = findViewById<RelativeLayout>(R.id.loader)
         loader.visibility = View.VISIBLE
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 view?.loadUrl(url)
+
                 return true
             }
 
             override fun onPageFinished(view: WebView, url: String) {
-                Log.d("Url:", url)
-                if(url == "https://www.unive.nl/zorgverzekering/zorgcheck") {
-                    //remove header & footer
-                    view?.loadUrl(
-                        "javascript:(function() { " +
-                                "var head = document.getElementsByClassName('mainHeader')[0].style.display='none'; " +
-                                "var foot = document.getElementsByClassName('mainFooter')[0].style.display='none'; " +
-                                "})()"
-                    )
-                } else {
-                    loader.visibility = View.GONE
-                }
+                Log.d("URL:",url)
+                view?.loadUrl(
+                    "javascript:(function() { " +
+                            "var head = document.getElementsByClassName('mainHeader')[0].style.display='none'; " +
+                            "var heroHeader = document.getElementsByClassName('heroHeader')[0].style.display='none'; " +
+                            "var generic = document.getElementsByClassName('generic')[0].style.display='none'; " +
+                            "var faqSection = document.getElementsByClassName('faqSection')[0].style.display='none'; " +
+                            "var foot = document.getElementsByClassName('mainFooter')[0].style.display='none'; " +
+                            "})()"
+                )
+                loader.visibility = View.INVISIBLE
             }
         }
     }

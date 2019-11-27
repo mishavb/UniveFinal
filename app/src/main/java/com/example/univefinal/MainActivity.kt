@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         val buyHouse = findViewById<Button>(R.id.buyHouse)
         buyHouse.setOnClickListener{
-            val intent = Intent(this, LicenseError::class.java)
+            val intent = Intent(this, HypotheekCheck::class.java)
             startActivity(intent)
         }
 

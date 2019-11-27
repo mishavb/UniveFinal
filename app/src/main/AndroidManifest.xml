@@ -16,9 +16,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".HypotheekCheck"
+            android:label="@string/title_activity_hypotheek_check"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ZorgCheck"
             android:label="@string/title_activity_zorg_check"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NetworkError"
             android:label="@string/title_activity_network_error"
