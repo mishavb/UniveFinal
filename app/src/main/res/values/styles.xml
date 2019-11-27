@@ -60,6 +60,7 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">18sp</item>
     </style>
+
     <style name="NavButtonPurple" parent="@style/Widget.AppCompat.Button">
         <item name="android:background">@drawable/button_forward_purple_bg</item>
         <item name="android:fontFamily">@font/open_sans_semibold</item>
@@ -69,6 +70,7 @@
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">18sp</item>
     </style>
+
     <style name="GreenLoader" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorAccent">@color/colorPrimary</item>
     </style>

@@ -62,6 +62,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val healthInsurance = findViewById<Button>(R.id.healthInsurance)
+        healthInsurance.setOnClickListener{
+            val intent = Intent(this, ZorgCheck::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -24,4 +24,5 @@
     <string name="vehicle_error_text">Er is iets misgegaan tijdens het ophalen van de voertuiggegevens.</string>
     <string name="network_error_heading">U heeft geen netwerkverbinding</string>
     <string name="title_activity_network_error"></string>
+    <string name="title_activity_zorg_check">ZorgCheck</string>
 </resources>

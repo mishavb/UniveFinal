@@ -151,14 +151,6 @@ class VehicleInformation : AppCompatActivity() {
         }
     }
 
-//    private fun returnToPreviousActivity() {
-//        val intent = Intent().apply {
-//            putExtra("errorToken", 1)
-//        }
-//        setResult(Activity.RESULT_OK, intent)
-//        onBackPressed()
-//    }
-
     private fun licensePlateError() {
         val intent = Intent(this, LicenseError::class.java)
         intent.putExtra("parentView", parentView)

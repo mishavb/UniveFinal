@@ -16,9 +16,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ZorgCheck"
+            android:label="@string/title_activity_zorg_check"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".NetworkError"
             android:label="@string/title_activity_network_error"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LicenseError"
             android:label="@string/title_activity_license_error"
@@ -53,7 +57,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".NetworkChangeReceiver" >
+
+        <receiver android:name=".NetworkChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
