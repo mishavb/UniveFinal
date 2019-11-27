@@ -64,6 +64,7 @@ class HypotheekCheck : AppCompatActivity() {
                             "var generic = document.getElementsByClassName('generic')[0].style.display='none'; " +
                             "var faqSection = document.getElementsByClassName('faqSection')[0].style.display='none'; " +
                             "var foot = document.getElementsByClassName('mainFooter')[0].style.display='none'; " +
+                            "var changePFontSize = document.querySelector('.hypotheek-calc__subtitle p').style.fontSize = '14px'"+
                             "})()"
                 )
                 loader.visibility = View.INVISIBLE
