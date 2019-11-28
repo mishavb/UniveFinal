@@ -23,6 +23,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
+    <Button
+        android:id="@+id/tips"
+        style="@style/CustomButton"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/buttonSideMargin"
+        android:layout_marginLeft="@dimen/buttonSideMargin"
+        android:layout_marginEnd="@dimen/buttonSideMargin"
+        android:layout_marginRight="@dimen/buttonSideMargin"
+        android:drawablePadding="24dp"
+        android:paddingLeft="22dp"
+        android:drawableLeft="@drawable/button_cartips_xml"
+        android:text="@string/vehicle_tips"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/retrieve_vehicle_info" />
+
+    <Button
+        android:id="@+id/privateLease"
+        style="@style/CustomButton"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/buttonSideMargin"
+        android:layout_marginLeft="@dimen/buttonSideMargin"
+        android:layout_marginEnd="@dimen/buttonSideMargin"
+        android:layout_marginRight="@dimen/buttonSideMargin"
+        android:drawableLeft="@drawable/button_carlease_xml"
+        android:drawablePadding="24dp"
+        android:paddingLeft="20dp"
+        android:text="@string/privateLease"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tips" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"

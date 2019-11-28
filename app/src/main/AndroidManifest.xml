@@ -16,9 +16,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Tips"
+            android:label="@string/title_activity_tips"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".SchadeService"
             android:label="@string/title_activity_schade_service"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HypotheekCheck"
             android:label="@string/title_activity_hypotheek_check"

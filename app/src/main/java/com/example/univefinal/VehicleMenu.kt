@@ -45,6 +45,12 @@ class VehicleMenu : AppCompatActivity() {
             val intent = Intent(this, LicensePlateManual::class.java)
             startActivity(intent)
         }
+
+        val tips = findViewById<Button>(R.id.tips)
+        tips.setOnClickListener{
+            val intent = Intent(this, Tips::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

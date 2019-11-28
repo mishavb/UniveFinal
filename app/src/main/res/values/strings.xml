@@ -27,4 +27,7 @@
     <string name="title_activity_zorg_check">ZorgCheck</string>
     <string name="title_activity_hypotheek_check">HypotheekCheck</string>
     <string name="title_activity_schade_service">SchadeService</string>
+    <string name="vehicle_tips">Tips bij aankoop auto</string>
+    <string name="privateLease">Bekijk private lease</string>
+    <string name="title_activity_tips">Tips</string>
 </resources>
