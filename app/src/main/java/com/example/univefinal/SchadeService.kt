@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
+import kotlinx.android.synthetic.main.activity_hypotheek_check.*
 
 
 import kotlinx.android.synthetic.main.activity_schade_service.toolbar
@@ -29,7 +30,7 @@ class SchadeService : AppCompatActivity() {
         //set back button
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
-        toolbar.setTitleTextColor(Color.BLACK)
+        toolbar.setTitleTextColor(Color.parseColor("#505050"))
 
         webView = findViewById(R.id.schadeServiceView)
         val webSettings = webView.settings

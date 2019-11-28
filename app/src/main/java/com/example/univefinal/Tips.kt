@@ -30,7 +30,7 @@ class Tips : AppCompatActivity() {
         //set back button
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
-        toolbar.setTitleTextColor(Color.BLACK)
+        toolbar.setTitleTextColor(Color.parseColor("#505050"))
 
         webView = findViewById(R.id.tipsView)
         val webSettings = webView.settings
