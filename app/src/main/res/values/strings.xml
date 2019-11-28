@@ -26,4 +26,5 @@
     <string name="title_activity_network_error"></string>
     <string name="title_activity_zorg_check">ZorgCheck</string>
     <string name="title_activity_hypotheek_check">HypotheekCheck</string>
+    <string name="title_activity_schade_service">SchadeService</string>
 </resources>

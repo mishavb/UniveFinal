@@ -62,6 +62,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val damageService = findViewById<Button>(R.id.damageService)
+        damageService.setOnClickListener{
+            val intent = Intent(this, SchadeService::class.java)
+            startActivity(intent)
+        }
+
         val healthInsurance = findViewById<Button>(R.id.healthInsurance)
         healthInsurance.setOnClickListener{
             val intent = Intent(this, ZorgCheck::class.java)

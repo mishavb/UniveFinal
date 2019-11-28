@@ -71,6 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buyHouse" />
 
     <Button
+        android:id="@+id/damageService"
         style="@style/CustomButton"
         android:layout_width="0dp"
         android:layout_marginStart="@dimen/buttonSideMargin"
