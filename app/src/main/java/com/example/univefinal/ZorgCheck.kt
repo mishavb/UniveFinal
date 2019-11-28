@@ -15,6 +15,8 @@ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.RelativeLayout
 
@@ -59,7 +61,6 @@ class ZorgCheck : AppCompatActivity() {
             }
 
             override fun onPageFinished(view: WebView, url: String) {
-                Log.d("Url:", url)
                 if(url == "https://www.unive.nl/zorgverzekering/zorgcheck") {
                     //remove header & footer
                     view?.loadUrl(
@@ -73,6 +74,20 @@ class ZorgCheck : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here.
+        val id = item.itemId
+
+        AppMethods.returnToMainMenu(id, this)
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {

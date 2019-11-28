@@ -3,6 +3,8 @@ package com.example.univefinal
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -56,7 +58,6 @@ class HypotheekCheck : AppCompatActivity() {
             }
 
             override fun onPageFinished(view: WebView, url: String) {
-                Log.d("URL:",url)
                 view?.loadUrl(
                     "javascript:(function() { " +
                             "var head = document.getElementsByClassName('mainHeader')[0].style.display='none'; " +
@@ -76,5 +77,20 @@ class HypotheekCheck : AppCompatActivity() {
         onBackPressed()
         return true
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here.
+        val id = item.itemId
+
+        AppMethods.returnToMainMenu(id, this)
+
+        return super.onOptionsItemSelected(item)
+    }
+
 
 }
