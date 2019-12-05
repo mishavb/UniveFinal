@@ -12,10 +12,8 @@ import android.webkit.WebViewClient
 import android.widget.RelativeLayout
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
-import kotlinx.android.synthetic.main.activity_hypotheek_check.*
-import kotlinx.android.synthetic.main.activity_hypotheek_check.toolbar
-import kotlinx.android.synthetic.main.activity_zorg_check.*
 
 class WebViewController : AppCompatActivity() {
     private lateinit var webView: WebView
@@ -23,7 +21,7 @@ class WebViewController : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_hypotheek_check)
+        setContentView(R.layout.activity_web_view_controller)
         setSupportActionBar(toolbar)
 
         //get webview title & url
