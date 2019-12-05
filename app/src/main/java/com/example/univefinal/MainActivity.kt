@@ -48,6 +48,17 @@ class MainActivity : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
 
+//        webView.loadUrl("https://www.unive.nl/hypotheek/")
+//        webView.loadUrl("https://www.unive.nl/schadeservice/")
+//        webView.loadUrl("https://www.unive.nl/autoverzekering/tips-tweedehands-auto-kopen")
+//        webView.loadUrl("https://www.unive.nl/zorgverzekering/zorgcheck/")
+
+        //privatelease??
+
+//        intent.putExtra("webviewTitle", "Bereken uw hypotheek")
+//        intent.putExtra("webviewTitle", "Zorgverzekering")
+//        intent.putExtra("webviewTitle", "Schadehersteller")
+//        intent.putExtra("webviewTitle", "Zorgverzekering")
 
         //button actions
         val buyCar = findViewById<Button>(R.id.buyCar)
@@ -58,19 +69,25 @@ class MainActivity : AppCompatActivity() {
 
         val buyHouse = findViewById<Button>(R.id.buyHouse)
         buyHouse.setOnClickListener{
-            val intent = Intent(this, HypotheekCheck::class.java)
+            val intent = Intent(this, WebViewController::class.java)
+            intent.putExtra("webviewTitle", "Bereken uw hypotheek")
+            intent.putExtra("webviewUrl", "https://www.unive.nl/hypotheek/")
             startActivity(intent)
         }
 
         val damageService = findViewById<Button>(R.id.damageService)
         damageService.setOnClickListener{
-            val intent = Intent(this, SchadeService::class.java)
+            val intent = Intent(this, WebViewController::class.java)
+            intent.putExtra("webviewTitle", "Schadehersteller")
+            intent.putExtra("webviewUrl", "https://www.unive.nl/schadeservice/")
             startActivity(intent)
         }
 
         val healthInsurance = findViewById<Button>(R.id.healthInsurance)
         healthInsurance.setOnClickListener{
-            val intent = Intent(this, ZorgCheck::class.java)
+            val intent = Intent(this, WebViewController::class.java)
+            intent.putExtra("webviewTitle", "Zorgverzekering")
+            intent.putExtra("webviewUrl", "https://www.unive.nl/zorgverzekering/zorgcheck/")
             startActivity(intent)
         }
     }

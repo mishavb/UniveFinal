@@ -30,4 +30,5 @@
     <string name="vehicle_tips">Tips bij aankoop auto</string>
     <string name="privateLease">Bekijk private lease</string>
     <string name="title_activity_tips">Tips</string>
+    <string name="title_activity_web_view_controller">WebViewController</string>
 </resources>
