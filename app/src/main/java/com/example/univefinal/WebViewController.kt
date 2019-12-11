@@ -13,6 +13,7 @@ import android.widget.RelativeLayout
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_web_view_controller.*
 
 
 class WebViewController : AppCompatActivity() {

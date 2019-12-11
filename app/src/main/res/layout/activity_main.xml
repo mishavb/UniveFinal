@@ -1,30 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#FFFFFF"
-            app:navigationIcon="@drawable/nav_back_dark"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:theme="@style/ToolbarTheme" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="200dp"
+                android:layout_height="75dp"
+                app:srcCompat="@drawable/unive_logo"
+                android:layout_marginTop="280dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="190dp"/>
 
-    <include layout="@layout/content_main" />
+            <Button
+                android:id="@+id/vehicle_information2"
+                style="@style/NavForwardButtonPurple"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#949DFB"
+                android:drawableRight="@drawable/navforward_button_xml"
+                android:drawablePadding="20dip"
+                android:fontFamily="@font/open_sans_semibold"
+                android:gravity="center|left"
+                android:paddingLeft="30dp"
+                android:paddingRight="0dp"
+                android:text="Inloggen voor klanten"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="367dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginRight="28dp"
+                android:fontFamily="@font/open_sans"
+                android:text="@string/screen1_text"
+                android:textColor="#505050"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_information2" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <Button
+                android:id="@+id/buyCar"
+                style="@style/CustomButton"
+                android:layout_width="match_parent"
+                android:layout_marginTop="19dp"
+                android:drawableLeft="@drawable/button_car_xml"
+                android:text="@string/buy_car"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <Button
+                android:id="@+id/healthInsurance"
+                style="@style/CustomButton"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/button_zorg_xml"
+                android:text="@string/health_insurance"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buyCar" />
+
+            <Button
+                android:id="@+id/buyHouse"
+                style="@style/CustomButton"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/button_house_xml"
+                android:text="@string/buy_house"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/healthInsurance" />
+
+            <Button
+                android:id="@+id/damageService"
+                style="@style/CustomButton"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/button_schade_xml"
+                android:text="@string/body_shop"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buyHouse" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
