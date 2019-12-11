@@ -206,9 +206,9 @@ class VehicleInformation : AppCompatActivity() {
                         textViewEnergy.text = "Energie " + car["zuinigheidslabel"]
                     }
 
-                    //Set seats text
-                    var textViewSeats = findViewById<TextView>(R.id.textViewSeats)
-                    textViewSeats.text = car["aantal_zitplaatsen"]
+                    //Set doors text
+                    var textViewSeats = findViewById<TextView>(R.id.textViewDoors)
+                    textViewSeats.text = car["aantal_deuren"]
 
                     //Set body text
                     var textViewBody = findViewById<TextView>(R.id.textViewBody)
@@ -217,10 +217,16 @@ class VehicleInformation : AppCompatActivity() {
                     //set fuel text
                     var textViewFuel = findViewById<TextView>(R.id.textViewFuel)
                     textViewFuel.text = fueldata["brandstof_omschrijving"]?.toLowerCase()?.capitalize()
+                    if(fueldata["brandstof_omschrijving"]!! == "Elektriciteit"){
+                        var imageViewFuel = findViewById<ImageView>(R.id.FuelIcon)
+                        imageViewFuel.setImageResource(R.drawable.ic_power_plug)
+                    }
 
-                    //hide loader
-                    loading.visibility = View.GONE
-
+                    //set mileage text
+                    if(fueldata["brandstofverbruik_gecombineerd"] != null) {
+                        var textViewMileage = findViewById<TextView>(R.id.textViewMileage)
+                        textViewMileage.text = (fueldata["brandstofverbruik_gecombineerd"]?.toFloat()).toString() + "l/100km"
+                    }
                     //labels
                     var labels = findViewById<TextView>(R.id.retrieved_info_labels)
                     labels.visibility = View.VISIBLE
@@ -231,6 +237,9 @@ class VehicleInformation : AppCompatActivity() {
                     //show premie button
                     var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
                     premieBtn.visibility = View.VISIBLE
+
+                    //hide loader
+                    loading.visibility = View.GONE
                 } else {
                     licensePlateError()
                 }

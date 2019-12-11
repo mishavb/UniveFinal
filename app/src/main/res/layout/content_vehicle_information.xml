@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_vehicle_information">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewTax"
+        android:id="@+id/cardViewMileage"
         android:layout_width="180dp"
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
@@ -26,8 +26,8 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textViewTax"
-                android:layout_width="134dp"
+                android:id="@+id/textViewMileage"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
@@ -39,14 +39,14 @@
 
 
             <ImageView
-                android:id="@+id/TaxIcon"
+                android:id="@+id/MileageIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_people_multiple" />
+                android:src="@drawable/ic_jerrycan" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -62,7 +62,7 @@
         app:cardCornerRadius="3dp"
         app:cardElevation="-1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewSeats">
+        app:layout_constraintTop_toBottomOf="@+id/cardViewDoors">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
 
             <TextView
                 android:id="@+id/textViewFuel"
-                android:layout_width="134dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
@@ -203,6 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="10dp"
@@ -211,7 +212,6 @@
                 android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@+id/retrieved_info_labels"
                 android:layout_toRightOf="@+id/retrieved_info_labels"
-                android:layout_centerVertical="true"
                 android:fontFamily="@font/open_sans_bold"
                 android:textAllCaps="false"
                 android:textColor="#505050"
@@ -222,15 +222,15 @@
 
             <TextView
                 android:id="@+id/retrieved_info_labels"
-                android:layout_width="146dp"
-                android:layout_height="wrap_content"
+                android:layout_width="148dp"
+                android:layout_height="21dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_centerVertical="true"
                 android:fontFamily="@font/open_sans_bold"
                 android:text="@string/vehicle_titles"
                 android:textColor="#505050"
@@ -260,15 +260,15 @@
 
             <TextView
                 android:id="@+id/textViewAPK"
-                android:layout_width="134dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:fontFamily="@font/open_sans_bold"
-                android:textSize="@dimen/mainTextSize"
-                android:text="Onbekend" />
+                android:text="Onbekend"
+                android:textSize="@dimen/mainTextSize" />
 
 
             <ImageView
@@ -285,7 +285,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewSeats"
+        android:id="@+id/cardViewDoors"
         android:layout_width="180dp"
         android:layout_height="70dp"
         android:layout_marginStart="@dimen/buttonSideMargin"
@@ -302,27 +302,27 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textViewSeats"
-                android:layout_width="134dp"
+                android:id="@+id/textViewDoors"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:fontFamily="@font/open_sans_bold"
-                android:textSize="@dimen/mainTextSize"
-                android:text="Onbekend" />
+                android:text="Onbekend"
+                android:textSize="@dimen/mainTextSize" />
 
 
             <ImageView
-                android:id="@+id/SeatIcon"
+                android:id="@+id/DoorIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_people_multiple" />
+                android:src="@drawable/ic_car_door" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -348,15 +348,15 @@
 
             <TextView
                 android:id="@+id/textViewEnergy"
-                android:layout_width="134dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:fontFamily="@font/open_sans_bold"
-                android:textSize="@dimen/mainTextSize"
-                android:text="Onbekend" />
+                android:text="Onbekend"
+                android:textSize="@dimen/mainTextSize" />
 
             <ImageView
                 android:id="@+id/energyIcon"
@@ -392,15 +392,15 @@
 
             <TextView
                 android:id="@+id/textViewBody"
-                android:layout_width="134dp"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:fontFamily="@font/open_sans_bold"
-                android:textSize="@dimen/mainTextSize"
-                android:text="Onbekend" />
+                android:text="Onbekend"
+                android:textSize="@dimen/mainTextSize" />
 
             <ImageView
                 android:id="@+id/bodyIcon"

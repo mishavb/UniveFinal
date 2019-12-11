@@ -2,5 +2,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="titleTextSize">28sp</dimen>
     <dimen name="buttonSideMargin">8dp</dimen>
-    <dimen name="mainTextSize">16sp</dimen>
+    <dimen name="mainTextSize">14sp</dimen>
 </resources>
