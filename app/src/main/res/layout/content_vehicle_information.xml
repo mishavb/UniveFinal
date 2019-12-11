@@ -10,25 +10,29 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="311dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="153dp"
+        android:layout_marginLeft="153dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginRight="153dp"
         android:fontFamily="@font/bree_serif"
+        android:gravity="center"
         android:text="@string/title_activity_vehicle_information"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#505050"
         android:textSize="@dimen/titleTextSize"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="256dp"
-        android:layout_height="93dp"
+        android:layout_width="234dp"
+        android:layout_height="51dp"
         android:layout_marginStart="77dp"
         android:layout_marginLeft="77dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="78dp"
         android:layout_marginRight="78dp"
         android:src="@drawable/license_plate_input"
@@ -38,21 +42,20 @@
 
     <TextView
         android:id="@+id/license_plate_input2"
-        android:layout_width="189dp"
-        android:layout_height="wrap_content"
+        android:layout_width="122dp"
+        android:layout_height="37dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:fontFamily="@font/open_sans_bold"
         android:gravity="center"
         android:maxLength="8"
         android:textColor="#505050"
-        android:textSize="28sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.865"
+        app:layout_constraintHorizontal_bias="0.687"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.437" />
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/buttonCalcPremie"
@@ -88,73 +91,243 @@
             android:theme="@style/GreenLoader"></ProgressBar>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/read_more"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="@dimen/buttonSideMargin"
+        android:layout_marginLeft="@dimen/buttonSideMargin"
         android:layout_marginTop="16dp"
-        android:background="@null"
-        android:fontFamily="@font/open_sans"
-        android:padding="0dp"
-        android:text="@string/readmore"
-        android:textAllCaps="false"
-        android:textColor="#949bff"
-        android:textIsSelectable="false"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/retrieved_info_labels" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="340dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="@string/what_we_found"
-        android:textColor="#505050"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <TextView
-        android:id="@+id/retrieved_info_labels"
-        android:layout_width="173dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="@string/vehicle_titles"
-        android:textColor="#505050"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/retrieved_info"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/retrieved_info"
-        android:layout_width="181dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:fontFamily="@font/open_sans_bold"
-        android:textAllCaps="false"
-        android:textColor="#505050"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:layout_marginEnd="@dimen/buttonSideMargin"
+        android:layout_marginRight="@dimen/buttonSideMargin"
+        app:cardBackgroundColor="@color/cardBackground"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="-1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/retrieved_info_labels"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/retrieved_info"
+                android:layout_width="221dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/retrieved_info_labels"
+                android:layout_toRightOf="@+id/retrieved_info_labels"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/open_sans_bold"
+                android:textAllCaps="false"
+                android:textColor="#505050"
+                android:textSize="@dimen/mainTextSize"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/retrieved_info_labels"
+                android:layout_width="146dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="@string/vehicle_titles"
+                android:textColor="#505050"
+                android:textSize="@dimen/mainTextSize"
+                android:textStyle="bold"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAPK"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="@dimen/buttonSideMargin"
+        android:layout_marginLeft="@dimen/buttonSideMargin"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/cardBackground"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="-1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewAPK"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:textSize="@dimen/mainTextSize"
+                android:text="Onbekend" />
+
+
+            <ImageView
+                android:id="@+id/APKicon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_check" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSeats"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="@dimen/buttonSideMargin"
+        android:layout_marginLeft="@dimen/buttonSideMargin"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="@color/cardBackground"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="-1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewAPK">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewSeats"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:textSize="@dimen/mainTextSize"
+                android:text="Onbekend" />
+
+
+            <ImageView
+                android:id="@+id/SeatIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_people_multiple" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewEnergy"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/buttonSideMargin"
+        android:layout_marginRight="@dimen/buttonSideMargin"
+        app:cardBackgroundColor="@color/cardBackground"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="-1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/cardViewAPK"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewEnergy"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:textSize="@dimen/mainTextSize"
+                android:text="Onbekend" />
+
+            <ImageView
+                android:id="@+id/energyIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_earth_icon" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewBody"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/buttonSideMargin"
+        android:layout_marginRight="@dimen/buttonSideMargin"
+        app:cardBackgroundColor="@color/cardBackground"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="-1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/cardViewAPK"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewEnergy">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewBody"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:textSize="@dimen/mainTextSize"
+                android:text="Onbekend" />
+
+            <ImageView
+                android:id="@+id/bodyIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_car" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

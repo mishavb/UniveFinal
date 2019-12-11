@@ -5,23 +5,19 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.StrictMode
+import android.text.TextUtils.split
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_vehicle_information.*
 import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.uiThread
 import java.net.URL
-import android.widget.LinearLayout
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import androidx.constraintlayout.widget.ConstraintLayout
-import org.w3c.dom.Text
+import com.example.univefinal.AppMethods
+import org.jetbrains.anko.custom.asyncResult
 
 
 class VehicleInformation : AppCompatActivity() {
@@ -57,7 +53,6 @@ class VehicleInformation : AppCompatActivity() {
         loadVehicleData(strLicenseplate, infoTextView)
 
         //readmore button
-        val readmore = findViewById<Button>(R.id.read_more)
         val info = findViewById<TextView>(R.id.retrieved_info)
         val labels = findViewById<TextView>(R.id.retrieved_info_labels)
 
@@ -67,19 +62,6 @@ class VehicleInformation : AppCompatActivity() {
         //set init height
         info.layoutParams.height = (oneLineHeight * 5)+5
         labels.layoutParams.height = (oneLineHeight * 5)+5
-
-        readmore.setOnClickListener{
-            if(readmore.text == "Toon meer informatie") { //expand
-                readmore.text = "Toon minder informatie"
-                info.layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
-                labels.layoutParams.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
-
-            } else {
-                readmore.text = "Toon meer informatie" //collapse
-                info.layoutParams.height = (oneLineHeight * 5)+5
-                labels.layoutParams.height = (oneLineHeight * 5)+5
-            }
-        }
     }
 
     override fun onBackPressed() {
@@ -158,23 +140,39 @@ class VehicleInformation : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun getRoadTax(weight : Int, fuel : String) : String{
+        var fuelInt = 0
+        when(fuel){
+            "benzine" -> fuelInt = 1
+            "diesel" -> fuelInt = 2
+            "CNG" -> fuelInt = 3
+            "LPG" ->fuelInt = 4
+        }
+        val apiURL = "http://bmdigital.nl/unive/?kg=$weight&prov=UT&fuel=$fuelInt"
+        return apiURL
+    }
+
+    private fun getFuel(licenseplate: String){
+        val apiURL = "https://opendata.rdw.nl/api/id/8ys7-d773.json?\$query=select%20*%20search%20%27$licenseplate%27%20limit%20100&\$query_timeout_seconds=30"
+        async {
+            val apiResult = getJsonFromURL(apiURL)
+
+           asyncResult {
+           }
+        }
+    }
+
     private fun loadVehicleData(licenseplate : String, textView : TextView) {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
-
-        var read_more = findViewById<Button>(R.id.read_more)
-        read_more.visibility = View.INVISIBLE
-
-        var textView3 = findViewById<TextView>(R.id.textView3)
-        textView3.visibility = View.INVISIBLE
 
         var loading = findViewById<RelativeLayout>(R.id.loader)
         loading.visibility = View.VISIBLE
 
         val licensePlateFormatted = licenseplate.replace("-", "")
-
+        async { }
         async{
-            val apiURL = "https://opendata.rdw.nl/api/id/m9d7-ebf2.json?\$query=select%20%2A%20search%20%27$licensePlateFormatted%27%20limit%20100&\$\$query_timeout_seconds=3"
+            val apiURL = "https://opendata.rdw.nl/api/id/m9d7-ebf2.json?\$query=select%20%2A%20search%20%27$licensePlateFormatted%27%20limit%20100&\$query_timeout_seconds=3"
             val apiResult = getJsonFromURL(apiURL)
 
             uiThread {
@@ -195,28 +193,45 @@ class VehicleInformation : AppCompatActivity() {
                     }
 
                     var returnText =
-                            car["merk"]?.toLowerCase()?.capitalize() +
-                            "\n"+car["handelsbenaming"]?.toLowerCase()?.capitalize()+
-                            "\n"+car["inrichting"]?.toLowerCase()?.capitalize()+
-                            "\n"+car["uitvoering"]+
-                            "\n"+car["zuinigheidslabel"]+
-                            "\n"+car["voertuigsoort"]+
-                            "\n"+car["aantal_deuren"]+
-                            "\n"+car["eerste_kleur"]?.toLowerCase()?.capitalize()+
-                            "\n"+formatAPKDate(car["vervaldatum_apk"])+
-                            "\n"+formatAPKDate(car["datum_eerste_afgifte_nederland"])+
-                            "\n"+bpm
+                            car["uitvoering"] +
+                            "\n"+car["eerste_kleur"]
 
+                    var merk = car["merk"]?.toLowerCase()?.capitalize()
+                    var handelsBenaming = car["handelsbenaming"]?.toLowerCase()?.capitalizeWords()
+                    var title = findViewById<TextView>(R.id.textView)
+
+                    //Set car title text, check if manufacturer name is not in car trade name
+                    if(" " in handelsBenaming!!){
+                        if(handelsBenaming.split(" ")[0] == merk) {
+                            title.text = handelsBenaming
+                        } else {
+                            title.text = merk + " " + handelsBenaming
+                        }
+                    } else {
+                        title.text = merk + " " + handelsBenaming
+                    }
                     textView.text = returnText
+
+                    //set APK date text
+                    var textViewAPK = findViewById<TextView>(R.id.textViewAPK)
+                    textViewAPK.text = formatAPKDate(car["vervaldatum_apk"])
+
+                    //Set energylabel text
+                    if(car["zuinigheidslabel"] != "Onbekend") {
+                        var textViewEnergy = findViewById<TextView>(R.id.textViewEnergy)
+                        textViewEnergy.text = "Energie " + car["zuinigheidslabel"]
+                    }
+
+                    //Set seats text
+                    var textViewSeats = findViewById<TextView>(R.id.textViewSeats)
+                    textViewSeats.text = car["aantal_zitplaatsen"]
+
+                    //Set body text
+                    var textViewBody = findViewById<TextView>(R.id.textViewBody)
+                    textViewBody.text = car["inrichting"]?.toLowerCase()?.capitalize()
 
                     //hide loader
                     loading.visibility = View.GONE
-
-                    //show read more
-                    read_more.visibility = View.VISIBLE
-
-                    //show what we have found
-                    textView3.visibility = View.VISIBLE
 
                     //labels
                     var labels = findViewById<TextView>(R.id.retrieved_info_labels)
@@ -235,5 +250,5 @@ class VehicleInformation : AppCompatActivity() {
             }
         }
     }
-
+    fun String.capitalizeWords(): String = split(" ").map { it.capitalize() }.joinToString(" ")
 }

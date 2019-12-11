@@ -2,19 +2,21 @@ package com.example.univefinal
 
 import android.graphics.Color
 import android.os.Bundle
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.RelativeLayout
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 
+import kotlinx.android.synthetic.main.activity_private_lease.*
+import kotlinx.android.synthetic.main.activity_private_lease.toolbar
+import kotlinx.android.synthetic.main.activity_schade_service.*
 
-import kotlinx.android.synthetic.main.activity_schade_service.toolbar
-
-class SchadeService : AppCompatActivity() {
+class PrivateLease : AppCompatActivity() {
 
     private lateinit var webView: WebView
 
@@ -27,7 +29,7 @@ class SchadeService : AppCompatActivity() {
         //actionbar
         val actionbar = supportActionBar
         //set actionbar title
-        actionbar!!.title = "Schadehersteller"
+        actionbar!!.title = "Privatelease"
         //set back button
         actionbar.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayHomeAsUpEnabled(true)
@@ -44,7 +46,7 @@ class SchadeService : AppCompatActivity() {
         webSettings.setSupportZoom(true)
         webSettings.defaultTextEncodingName = "utf-8"
 
-        webView.loadUrl("https://www.unive.nl/schadeservice/")
+        webView.loadUrl("https://www.unive.nl/private-lease/")
 
         var loader = findViewById<RelativeLayout>(R.id.loader)
         loader.visibility = View.VISIBLE
@@ -56,13 +58,13 @@ class SchadeService : AppCompatActivity() {
 
             override fun onPageFinished(view: WebView, url: String) {
                 Log.d("Url:", url)
-                if(url == "https://www.unive.nl/schadeservice/") {
+                if(url == "https://www.unive.nl/private-lease/") {
                     //remove header & footer
                     view?.loadUrl(
-                    "javascript:(function() { " +
-                            "var head = document.getElementsByClassName('mainHeader')[0].style.display='none'; " +
-                            "var foot = document.getElementsByClassName('mainFooter')[0].style.display='none'; " +
-                            "})()"
+                        "javascript:(function() { " +
+                                "var head = document.getElementsByClassName('mainHeader')[0].style.display='none'; " +
+                                "var foot = document.getElementsByClassName('mainFooter')[0].style.display='none'; " +
+                                "})()"
                     )
                 }
                 loader.visibility = View.GONE
