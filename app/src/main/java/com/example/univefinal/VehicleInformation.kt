@@ -21,6 +21,7 @@ import org.jetbrains.anko.UI
 import org.jetbrains.anko.custom.asyncResult
 import org.jetbrains.anko.doAsync
 import java.sql.Ref
+import kotlin.math.roundToInt
 
 
 class VehicleInformation : AppCompatActivity() {
@@ -60,11 +61,11 @@ class VehicleInformation : AppCompatActivity() {
         val labels = findViewById<TextView>(R.id.retrieved_info_labels)
 
         //collapse height
-        val oneLineHeight = (labels.getPaint().getFontMetrics().bottom - labels.getPaint().getFontMetrics().top).toInt()
-
-        //set init height
-        info.layoutParams.height = (oneLineHeight * 5)+5
-        labels.layoutParams.height = (oneLineHeight * 5)+5
+//        val oneLineHeight = (labels.getPaint().getFontMetrics().bottom - labels.getPaint().getFontMetrics().top).toInt()
+//
+//        //set init height
+//        info.layoutParams.height = (oneLineHeight * 5)+5
+//        labels.layoutParams.height = (oneLineHeight * 5)+5
     }
 
     override fun onBackPressed() {
@@ -124,8 +125,7 @@ class VehicleInformation : AppCompatActivity() {
                     val keyValPair = row.split(":")
                     Log.d("acd", keyValPair.toString())
                     val keyString = keyValPair[0].replace("\"", "").replace("\"", "")
-                    val valueString = keyValPair[1].replace("\"", "").replace("\"", "")
-
+                    var valueString = keyValPair[1].replace("\"", "").replace("\"", "")
                     //add to map
                     map.put(keyString, valueString)
                 }
@@ -166,37 +166,28 @@ class VehicleInformation : AppCompatActivity() {
                 var fueldata = convertJSONtoLicenseplate(fuelApiResult)
                 Log.d("all ", car.toString())
                 if(car != null && fueldata != null) {
-                    if(car["zuinigheidslabel"] == null)
-                        car["zuinigheidslabel"] = "Onbekend"
-
-                    if(car["uitvoering"] == null)
-                        car["uitvoering"] = "Onbekend"
-
-                    var bpm = ""
-                    if(car["bruto_bpm"] == null)
-                        bpm = "Niet bekend"
-                    else {
-                        bpm = "€ "+car["bruto_bpm"]
+                    var catalogusprijs = "Onbekend"
+                    if(car["catalogusprijs"] != null){
+                        catalogusprijs = "€" + car["catalogusprijs"]
                     }
-
-                    var returnText =
-                            car["uitvoering"] +
-                            "\n"+car["eerste_kleur"]
+                    var vermogen = "Onbekend"
+                    if(fueldata["nettomaximumvermogen"] != null){
+                        vermogen = (fueldata["nettomaximumvermogen"]!!.toFloat() * 1.362).roundToInt().toString() + " pk"
+                    }
+                    var returnText = car["eerste_kleur"]?.toLowerCase()?.capitalize() +
+                        "\n" + car["massa_ledig_voertuig"] +
+                        "kg\n" + car["aantal_zitplaatsen"] +
+                        "\n" + catalogusprijs +
+                        "\n" + vermogen
 
                     var merk = car["merk"]?.toLowerCase()?.capitalize()
                     var handelsBenaming = car["handelsbenaming"]?.toLowerCase()?.capitalizeWords()
                     var title = findViewById<TextView>(R.id.textView)
 
                     //Set car title text, check if manufacturer name is not in car trade name
-                    if(" " in handelsBenaming!!){
-                        if(handelsBenaming.split(" ")[0] == merk) {
-                            title.text = handelsBenaming
-                        } else {
-                            title.text = merk + " " + handelsBenaming
-                        }
-                    } else {
-                        title.text = merk + " " + handelsBenaming
-                    }
+                    handelsBenaming = handelsBenaming?.replace(merk.toString() + " ", "")
+                    title.text = merk + " " + handelsBenaming
+
                     textView.text = returnText
 
                     //set APK date text
@@ -204,14 +195,16 @@ class VehicleInformation : AppCompatActivity() {
                     textViewAPK.text = formatAPKDate(car["vervaldatum_apk"])
 
                     //Set energylabel text
-                    if(car["zuinigheidslabel"] != "Onbekend") {
+                    if(car["zuinigheidslabel"] != null) {
                         var textViewEnergy = findViewById<TextView>(R.id.textViewEnergy)
                         textViewEnergy.text = "Energie " + car["zuinigheidslabel"]
                     }
 
                     //Set doors text
-                    var textViewSeats = findViewById<TextView>(R.id.textViewDoors)
-                    textViewSeats.text = car["aantal_deuren"]
+                    if(car["aantal_deuren"] != null) {
+                        var textViewDoors = findViewById<TextView>(R.id.textViewDoors)
+                        textViewDoors.text = car["aantal_deuren"] + " deuren"
+                    }
 
                     //Set body text
                     var textViewBody = findViewById<TextView>(R.id.textViewBody)

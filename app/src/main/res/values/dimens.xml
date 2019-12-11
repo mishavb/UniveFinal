@@ -3,4 +3,5 @@
     <dimen name="titleTextSize">28sp</dimen>
     <dimen name="buttonSideMargin">8dp</dimen>
     <dimen name="mainTextSize">14sp</dimen>
+    <dimen name="cardViewWidth">189dp</dimen>
 </resources>
