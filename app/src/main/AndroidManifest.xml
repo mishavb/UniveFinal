@@ -15,10 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Belasting"></activity>
         <activity
             android:name=".WebViewController"
             android:label="@string/title_activity_web_view_controller"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Tips"
             android:label="@string/title_activity_tips"
