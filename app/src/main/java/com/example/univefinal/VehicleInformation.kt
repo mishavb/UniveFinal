@@ -17,7 +17,10 @@ import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.uiThread
 import java.net.URL
 import com.example.univefinal.AppMethods
+import org.jetbrains.anko.UI
 import org.jetbrains.anko.custom.asyncResult
+import org.jetbrains.anko.doAsync
+import java.sql.Ref
 
 
 class VehicleInformation : AppCompatActivity() {
@@ -140,45 +143,26 @@ class VehicleInformation : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun getRoadTax(weight : Int, fuel : String) : String{
-        var fuelInt = 0
-        when(fuel){
-            "benzine" -> fuelInt = 1
-            "diesel" -> fuelInt = 2
-            "CNG" -> fuelInt = 3
-            "LPG" ->fuelInt = 4
-        }
-        val apiURL = "http://bmdigital.nl/unive/?kg=$weight&prov=UT&fuel=$fuelInt"
-        return apiURL
-    }
-
-    private fun getFuel(licenseplate: String){
-        val apiURL = "https://opendata.rdw.nl/api/id/8ys7-d773.json?\$query=select%20*%20search%20%27$licenseplate%27%20limit%20100&\$query_timeout_seconds=30"
-        async {
-            val apiResult = getJsonFromURL(apiURL)
-
-           asyncResult {
-           }
-        }
-    }
-
     private fun loadVehicleData(licenseplate : String, textView : TextView) {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
         var loading = findViewById<RelativeLayout>(R.id.loader)
         loading.visibility = View.VISIBLE
-
         val licensePlateFormatted = licenseplate.replace("-", "")
-        async { }
-        async{
-            val apiURL = "https://opendata.rdw.nl/api/id/m9d7-ebf2.json?\$query=select%20%2A%20search%20%27$licensePlateFormatted%27%20limit%20100&\$query_timeout_seconds=3"
-            val apiResult = getJsonFromURL(apiURL)
 
+        doAsync {
+            val apiURL = "https://opendata.rdw.nl/api/id/m9d7-ebf2.json?\$query=select%20%2A%20search%20%27$licensePlateFormatted%27%20limit%20100&\$\$query_timeout_seconds=3"
+            val fuelApiURL = "https://opendata.rdw.nl/api/id/8ys7-d773.json?\$query=select%20*%20search%20%27$licensePlateFormatted%27%20limit%20100&\$\$query_timeout_seconds=30"
+
+            val apiResult = getJsonFromURL(apiURL)
+            val fuelApiResult = getJsonFromURL(fuelApiURL)
+            Log.d("fuelapiresult ", fuelApiResult)
             uiThread {
                 var car = convertJSONtoLicenseplate(apiResult)
-                Log.d("all", car.toString())
-                if(car != null) {
+                var fueldata = convertJSONtoLicenseplate(fuelApiResult)
+                Log.d("all ", car.toString())
+                if(car != null && fueldata != null) {
                     if(car["zuinigheidslabel"] == null)
                         car["zuinigheidslabel"] = "Onbekend"
 
@@ -229,6 +213,10 @@ class VehicleInformation : AppCompatActivity() {
                     //Set body text
                     var textViewBody = findViewById<TextView>(R.id.textViewBody)
                     textViewBody.text = car["inrichting"]?.toLowerCase()?.capitalize()
+
+                    //set fuel text
+                    var textViewFuel = findViewById<TextView>(R.id.textViewFuel)
+                    textViewFuel.text = fueldata["brandstof_omschrijving"]?.toLowerCase()?.capitalize()
 
                     //hide loader
                     loading.visibility = View.GONE

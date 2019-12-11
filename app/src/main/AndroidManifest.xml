@@ -15,31 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Belasting"></activity>
-        <activity
-            android:name=".WebViewController"
-            android:label="@string/title_activity_web_view_controller"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".PrivateLease"
-            android:label="@string/title_activity_private_lease"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".Tips"
-            android:label="@string/title_activity_tips"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".SchadeService"
-            android:label="@string/title_activity_schade_service"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".HypotheekCheck"
-            android:label="@string/title_activity_hypotheek_check"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ZorgCheck"
-            android:label="@string/title_activity_zorg_check"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NetworkError"
             android:label="@string/title_activity_network_error"

@@ -46,12 +46,6 @@ class VehicleMenu : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val privateLease = findViewById<Button>(R.id.privateLease)
-        privateLease.setOnClickListener{
-            val intent = Intent(this, PrivateLease::class.java)
-            startActivity(intent)
-        }
-
         val tips = findViewById<Button>(R.id.tips)
         tips.setOnClickListener{
             val intent = Intent(this, WebViewController::class.java)

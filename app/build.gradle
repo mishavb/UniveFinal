@@ -40,6 +40,5 @@ dependencies {
 
     implementation 'org.jetbrains.anko:anko-common:0.9'
     implementation 'com.google.firebase:firebase-ml-vision:23.0.0'
-
 }
 apply plugin: 'com.google.gms.google-services'
