@@ -54,9 +54,20 @@ class VehicleMenu : AppCompatActivity() {
 
         val tips = findViewById<Button>(R.id.tips)
         tips.setOnClickListener{
-            val intent = Intent(this, Tips::class.java)
+            val intent = Intent(this, WebViewController::class.java)
+            intent.putExtra("webviewTitle", "Tips bij aankoop auto")
+            intent.putExtra("webviewUrl", "https://www.unive.nl/autoverzekering/tips-tweedehands-auto-kopen")
             startActivity(intent)
         }
+
+        val privateLease = findViewById<Button>(R.id.privateLease)
+        privateLease.setOnClickListener{
+            val intent = Intent(this, WebViewController::class.java)
+            intent.putExtra("webviewTitle", "Private Lease")
+            intent.putExtra("webviewUrl", "https://privatelease.beta.unive.nl/")
+            startActivity(intent)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

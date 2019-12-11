@@ -8,6 +8,12 @@ import android.net.ConnectivityManager
 import android.util.Log
 import androidx.core.content.ContextCompat.startActivity
 import com.example.univefinal.AppMethods.Companion.isConnectedToNetwork
+import org.w3c.dom.Text
+import java.net.URL
+import android.R.transition.explode
+import android.R.array
+
+
 
 
 class AppMethods {
@@ -95,16 +101,68 @@ class AppMethods {
         }
 
         fun isOnline(context : Context) : Boolean{
-            if (context.isConnectedToNetwork()) {
-                Log.d("----- Online -----", "yes")
-                return true
-            } else {
-                // Show disconnected screen
-                Log.d("----- Online -----", "no")
-                return false
-            }
+            return context.isConnectedToNetwork()
         }
 
+        fun BelastingRipper() : String {
+            val belastingData = URL("https://www.belastingdienst.nl/common/js/iah/motorrijtuigenbelasting.js").readText()
 
+            return belastingData
+        }
+
+        fun fetchAllProvinces() : String { //MutableMap<String, MutableMap<Int, String?>>
+            val input = BelastingRipper()
+            /*val startTag = "var dataNH=new Array(lenArray);"
+            val endTag = "var dataPH_NH=new Array(lenArray);"
+            var step1 = input.split(startTag)
+            var step2 = step1[1].split(endTag)
+
+            var replaceArray = listOf<String>(
+                "var dataFR=new Array(lenArray);",
+                "var dataUT=new Array(lenArray);",
+                "var dataNB=new Array(lenArray);",
+                "var dataLI=new Array(lenArray);",
+                "var dataFL=new Array(lenArray);",
+                "var dataOV=new Array(lenArray);",
+                "var dataZL=new Array(lenArray);",
+                "var dataGL=new Array(lenArray);",
+                "var dataGR=new Array(lenArray);",
+                "var dataZH=new Array(lenArray);",
+                "var dataDR=new Array(lenArray);")
+
+            var step3 = step2[0].replace(replaceArray[0], "<<END>>")
+                .replace(replaceArray[1], "<<END>>")
+                .replace(replaceArray[2], "<<END>>")
+                .replace(replaceArray[3], "<<END>>")
+                .replace(replaceArray[4], "<<END>>")
+                .replace(replaceArray[5], "<<END>>")
+                .replace(replaceArray[6], "<<END>>")
+                .replace(replaceArray[7], "<<END>>")
+                .replace(replaceArray[8], "<<END>>")
+                .replace(replaceArray[9], "<<END>>")
+                .replace(replaceArray[10], "<<END>>")
+                .replace("lenArray=46;", "<<END>>")
+
+            var step4 = step3.split("<<END>>") //province list
+            var newList = mutableMapOf<String, List<String>>()
+            for(provence in step4)
+            {
+                var provenceData = provence.split(",")
+                var provenceSubstring = provenceData[2].substring(0, 6)
+
+                var provenceKey = provenceSubstring.replace("data", "")
+                var valueList = mutableListOf<String>()
+                for(data in provenceData)
+                {
+                    valueList.add(data)
+                }
+
+                newList.put(provenceKey, mutableListOf("test"))
+            }
+
+            return step4.toString()
+        }*/
+            return input
+        }
     }
 }

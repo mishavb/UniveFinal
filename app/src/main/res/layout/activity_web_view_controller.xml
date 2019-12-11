@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Tips">
-
+    tools:context=".WebViewController">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -21,8 +20,9 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:theme="@style/ToolbarTheme" />
 
+
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_tips" />
+    <include layout="@layout/content_web_view_controller" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
