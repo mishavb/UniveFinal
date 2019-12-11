@@ -108,6 +108,8 @@ class VehicleInformation : AppCompatActivity() {
     fun convertJSONtoLicenseplate(jsonArray: String) : MutableMap<String, String?>? {
         val map = mutableMapOf<String, String?>()
 
+        Log.d("STRING", jsonArray)
+
         //replace array chars
         val stripArray = jsonArray.replace("[", "").replace("]", "")
         if(stripArray != null)
@@ -115,11 +117,12 @@ class VehicleInformation : AppCompatActivity() {
             //replace obj chars
             val stripObject = stripArray.replace("{", "").replace("}", "")
             //split on key-val
-            val keyValPairs = stripObject.split(",")
+            val keyValPairs = stripObject.split("\",")
             if(keyValPairs.size > 1) {
                 //loop through key value string array and get key and value
                 for (row in keyValPairs) {
                     val keyValPair = row.split(":")
+                    Log.d("acd", keyValPair.toString())
                     val keyString = keyValPair[0].replace("\"", "").replace("\"", "")
                     val valueString = keyValPair[1].replace("\"", "").replace("\"", "")
 
