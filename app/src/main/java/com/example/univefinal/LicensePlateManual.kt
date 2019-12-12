@@ -61,9 +61,8 @@ class LicensePlateManual : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
                 val str = licenseplateinput.text.toString()
-                if(str.length == 6 || str.length == 8){
+                if(str.length >= 6 && str.length <= 8){
                     val pos = AppMethods.validLicensePlate(str)
-                    Log.d("pos", pos.toString())
                     if(pos != 0){
                         val newstr = formatLicenseForDisplay(pos, str)
                         if(str != newstr){

@@ -1,9 +1,11 @@
 package com.example.univefinal
 
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.InflateException
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -12,12 +14,13 @@ import android.webkit.WebViewClient
 import android.widget.RelativeLayout
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_web_view_controller.*
 
 
 class WebViewController : AppCompatActivity() {
-    private lateinit var webView: WebView
+//    private lateinit var webView: WebView
     private var loadCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,45 +42,58 @@ class WebViewController : AppCompatActivity() {
         toolbar.setTitleTextColor(Color.parseColor("#505050"))
 
         if(viewUrl != null) {
-            webView = findViewById(R.id.zorgCheckView)
-            val webSettings = webView.settings
-            webSettings.javaScriptEnabled = true
-            webSettings.domStorageEnabled = true
-            webSettings.loadWithOverviewMode = true
-            webSettings.useWideViewPort = true
-            webSettings.builtInZoomControls = true
-            webSettings.displayZoomControls = false
-            webSettings.setSupportZoom(true)
-            webSettings.defaultTextEncodingName = "utf-8"
 
-            webView.loadUrl(viewUrl)
+            try {
+                var webView = WebView(this)
+                makeWebView(webView, viewUrl)
+            } catch (e: Resources.NotFoundException){
+                var webView = WebView(getApplicationContext())
+                makeWebView(webView, viewUrl)
+            }
 
-            var loader = findViewById<RelativeLayout>(R.id.loader)
-            loader.visibility = View.VISIBLE
-            webView.webViewClient = object : WebViewClient() {
-                override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    view?.loadUrl(url)
+        }
+    }
 
-                    return true
-                }
+    private fun makeWebView(webView: WebView, viewUrl : String){
 
-                override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-                    loader.visibility = View.INVISIBLE
-                }
+        val webSettings = webView.settings
+        webSettings.javaScriptEnabled = true
+        webSettings.domStorageEnabled = true
+        webSettings.loadWithOverviewMode = true
+        webSettings.useWideViewPort = true
+        webSettings.builtInZoomControls = true
+        webSettings.displayZoomControls = false
+        webSettings.setSupportZoom(true)
+        webSettings.defaultTextEncodingName = "utf-8"
 
-                override fun onPageFinished(view: WebView, url: String) {
-                    //Strip header & footer
+        webView.loadUrl(viewUrl)
+
+        var loader = findViewById<RelativeLayout>(R.id.loader)
+        loader.visibility = View.VISIBLE
+        webView.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                view?.loadUrl(url)
+
+                return true
+            }
+
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                loader.visibility = View.INVISIBLE
+            }
+
+            override fun onPageFinished(view: WebView, url: String) {
+                //Strip header & footer
 //                    view?.loadUrl(
 //                        "javascript:(function() { " +
 //                                "var head = document.getElementsByClassName('mainHeader')[0].style.display='none'; " +
 //                                "var foot = document.getElementsByClassName('mainFooter')[0].style.display='none'; " +
 //                                "})()"
 //                    )
-                }
             }
         }
+        val constraintLayout = findViewById<ConstraintLayout>(R.id.mainConstraintLayout)
+        constraintLayout.addView(webView)
     }
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
