@@ -42,14 +42,8 @@ class LicenseError : AppCompatActivity() {
         toolbar.setTitleTextColor(Color.BLACK)
 
         val tryAgain = findViewById<Button>(R.id.tryAgain)
-        var backIntent = Intent()
         tryAgain.setOnClickListener{
-            when(parentView){
-                "scan" -> backIntent = Intent(this, LicensePlateScan::class.java)
-                "manual" -> backIntent = Intent(this, LicensePlateManual::class.java)
-            }
-
-            startActivity(backIntent)
+            onBackPressed()
         }
     }
 

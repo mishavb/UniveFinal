@@ -142,7 +142,7 @@ class VehicleInformation : AppCompatActivity() {
     private fun licensePlateError() {
         val intent = Intent(this, LicenseError::class.java)
         intent.putExtra("parentView", parentView)
-
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
         startActivity(intent)
     }
 

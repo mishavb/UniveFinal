@@ -205,7 +205,7 @@ class LicensePlateScan : AppCompatActivity() {
                 btnNextStep.setOnClickListener {
                     val intent = Intent(this, VehicleInformation::class.java)
                     intent.putExtra("licenseplate", licensePlateText.text.toString())
-                    intent.putExtra("parentView", "scan")
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivityForResult(intent, START_VEHICLE_INFO_REQUEST_CODE)
                 }
 

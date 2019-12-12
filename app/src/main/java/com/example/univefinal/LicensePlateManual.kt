@@ -84,7 +84,7 @@ class LicensePlateManual : AppCompatActivity() {
             if(AppMethods.validLicensePlate(licenseplatetext) != 0) {
                 val intent = Intent(this, VehicleInformation::class.java)
                 intent.putExtra("licenseplate", licenseplatetext)
-                intent.putExtra("parentView", "manual")
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 startActivityForResult(intent, START_VEHICLE_INFO_REQUEST_CODE)
             } else {
                 errorlabel.text = "Vul een geldig kenteken in"
