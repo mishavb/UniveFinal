@@ -25,7 +25,6 @@ import kotlin.math.roundToInt
 
 
 class VehicleInformation : AppCompatActivity() {
-    private var parentView : String = ""
 
 
     override fun onStart() {
@@ -53,7 +52,6 @@ class VehicleInformation : AppCompatActivity() {
 
         val strLicenseplate = intent.getStringExtra("licenseplate")
         val infoTextView = findViewById<TextView>(R.id.retrieved_info)
-        parentView = intent.getStringExtra("parentView")
         loadVehicleData(strLicenseplate, infoTextView)
 
         //readmore button
@@ -141,7 +139,6 @@ class VehicleInformation : AppCompatActivity() {
 
     private fun licensePlateError() {
         val intent = Intent(this, LicenseError::class.java)
-        intent.putExtra("parentView", parentView)
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
         startActivity(intent)
     }

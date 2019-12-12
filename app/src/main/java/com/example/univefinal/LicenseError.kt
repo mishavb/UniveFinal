@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_license_error.toolbar
 import kotlinx.android.synthetic.main.activity_license_plate_manual.*
 
 class LicenseError : AppCompatActivity() {
-    private var parentView : String = ""
 
     override fun onStart() {
         super.onStart()
@@ -30,7 +29,6 @@ class LicenseError : AppCompatActivity() {
         setContentView(R.layout.activity_license_error)
         setSupportActionBar(toolbar)
 
-        parentView = intent.getStringExtra("parentView")
 
         //actionbar
         val actionbar = supportActionBar
