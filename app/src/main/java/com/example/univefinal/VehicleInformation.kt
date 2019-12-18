@@ -1,11 +1,9 @@
 package com.example.univefinal
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.StrictMode
-import android.text.TextUtils.split
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -16,9 +14,6 @@ import kotlinx.android.synthetic.main.activity_vehicle_information.*
 import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.uiThread
 import java.net.URL
-import com.example.univefinal.AppMethods
-import org.jetbrains.anko.UI
-import org.jetbrains.anko.custom.asyncResult
 import org.jetbrains.anko.doAsync
 import org.w3c.dom.Element
 import org.w3c.dom.Node
@@ -27,7 +22,6 @@ import org.xml.sax.SAXException
 import java.io.IOException
 import java.io.StringReader
 import javax.xml.parsers.DocumentBuilderFactory
-import java.sql.Ref
 import javax.xml.parsers.ParserConfigurationException
 import kotlin.math.roundToInt
 
@@ -59,12 +53,12 @@ class VehicleInformation : AppCompatActivity() {
         toolbar.setTitleTextColor(Color.BLACK)
 
         val strLicenseplate = intent.getStringExtra("licenseplate")
-        val infoTextView = findViewById<TextView>(R.id.retrieved_info)
+        val infoTextView = findViewById<TextView>(R.id.general_info)
         loadVehicleData(strLicenseplate, infoTextView)
 
         //readmore button
-        val info = findViewById<TextView>(R.id.retrieved_info)
-        val labels = findViewById<TextView>(R.id.retrieved_info_labels)
+        val info = findViewById<TextView>(R.id.general_info)
+        val labels = findViewById<TextView>(R.id.general_info_labels)
 
         //collapse height
 //        val oneLineHeight = (labels.getPaint().getFontMetrics().bottom - labels.getPaint().getFontMetrics().top).toInt()
@@ -151,7 +145,7 @@ class VehicleInformation : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun loadVehicleCosts(licenseplate: String) {
+    private fun loadVehicleCosts(licenseplate: String, loading : RelativeLayout) {
 
         doAsync {
             val apiURL = "https://scr.autodisk.nl/wsTCO_Client/wsTCO.asmx/wsCalculeerTCO?nDebiteurNummer=4533429&strGebruikersnaam=Unive.NL&strWachtwoord=yhnK@uQ=53XWG23V%2597rbkg&strKenteken="+licenseplate+"&nKilometerStand=25000&nInzetLooptijd=24&nInzetKmPerJaar=10000&sngRentePercentage=3&nAantalMaandenInBezit=11"
@@ -165,12 +159,30 @@ class VehicleInformation : AppCompatActivity() {
                     val Banden = vehicleCosts[0].getValue("Banden")
                     val Belasting = vehicleCosts[0].getValue("MRB")
                     val Verzekering = vehicleCosts[0].getValue("Verzekering")
+                    var costsTextView = findViewById<TextView>(R.id.vehicle_costs)
+                    costsTextView.text = "€ " + AfschrijvingEnRente +
+                            "\n€ " + Belasting +
+                            "\n€ " + Verzekering +
+                            "\n€ " + ReparatieEnOnderhoud +
+                            "\n€ " + Banden
+
+                    var totalCostsTextView = findViewById<TextView>(R.id.total_costs_label)
+                    totalCostsTextView.text =  "€ " + TCO_Totaal + " p.m."
                     Log.d("Totale kosten", TCO_Totaal)
                     Log.d("AfschrijvingEnRente", AfschrijvingEnRente)
                     Log.d("ReparatieEnOnderhoud", ReparatieEnOnderhoud)
                     Log.d("Banden", Banden)
                     Log.d("Belasting", Belasting)
                     Log.d("Verzekering", Verzekering)
+
+
+                    //hide loader
+                    loading.visibility = View.GONE
+
+                    //show premie button
+                    var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
+                    premieBtn.visibility = View.VISIBLE
+
                 }
             }
         }
@@ -245,7 +257,7 @@ class VehicleInformation : AppCompatActivity() {
             val fuelApiResult = getJsonFromURL(fuelApiURL)
 
             //load vehicle costs from API
-            loadVehicleCosts(licensePlateFormatted)
+            loadVehicleCosts(licensePlateFormatted, loading)
 
             uiThread {
                 var car = convertJSONtoLicenseplate(apiResult)
@@ -258,13 +270,20 @@ class VehicleInformation : AppCompatActivity() {
                     }
                     var vermogen = "Onbekend"
                     if(fueldata["nettomaximumvermogen"] != null){
-                        vermogen = (fueldata["nettomaximumvermogen"]!!.toFloat() * 1.362).roundToInt().toString() + " pk"
+                        vermogen = fueldata["nettomaximumvermogen"]?.toFloat()?.roundToInt().toString() + " kW / " + (fueldata["nettomaximumvermogen"]!!.toFloat() * 1.362).roundToInt().toString() + " pk"
                     }
-                    var returnText = car["eerste_kleur"]?.toLowerCase()?.capitalize() +
-                        "\n" + car["massa_ledig_voertuig"] +
-                        "kg\n" + car["aantal_zitplaatsen"] +
-                        "\n" + catalogusprijs +
-                        "\n" + vermogen
+                    var verbruik = "Onbekend"
+                    if(fueldata["brandstofverbruik_gecombineerd"] != null) {
+                        verbruik = (fueldata["brandstofverbruik_gecombineerd"]?.toFloat()).toString() + "l/100km"
+                    }
+                    var generalText = "\n\n" +
+                            car["uitvoering"] +
+                            "\n" + car["eerste_kleur"]
+
+                    var vehicleText = formatAPKDate(car["vervaldatum_apk"]) +
+                            "\n" + vermogen +
+                            "\n" + car["massa_ledig_voertuig"] +
+                            "\n" + verbruik
 
                     var merk = car["merk"]?.toLowerCase()?.capitalize()
                     var handelsBenaming = car["handelsbenaming"]?.toLowerCase()?.capitalizeWords()
@@ -274,55 +293,49 @@ class VehicleInformation : AppCompatActivity() {
                     handelsBenaming = handelsBenaming?.replace(merk.toString() + " ", "")
                     title.text = merk + " " + handelsBenaming
 
-                    textView.text = returnText
+                    textView.text = generalText
 
+                    var vehicleTextView = findViewById<TextView>(R.id.vehicle_info)
+                    vehicleTextView.text = vehicleText
                     //set APK date text
-                    var textViewAPK = findViewById<TextView>(R.id.textViewAPK)
-                    textViewAPK.text = formatAPKDate(car["vervaldatum_apk"])
+//                    var textViewAPK = findViewById<TextView>(R.id.textViewAPK)
+//                    textViewAPK.text = formatAPKDate(car["vervaldatum_apk"])
 
-                    //Set energylabel text
-                    if(car["zuinigheidslabel"] != null) {
-                        var textViewEnergy = findViewById<TextView>(R.id.textViewEnergy)
-                        textViewEnergy.text = "Energie " + car["zuinigheidslabel"]
-                    }
-
-                    //Set doors text
-                    if(car["aantal_deuren"] != null) {
-                        var textViewDoors = findViewById<TextView>(R.id.textViewDoors)
-                        textViewDoors.text = car["aantal_deuren"] + " deuren"
-                    }
-
-                    //Set body text
-                    var textViewBody = findViewById<TextView>(R.id.textViewBody)
-                    textViewBody.text = car["inrichting"]?.toLowerCase()?.capitalize()
-
-                    //set fuel text
-                    var textViewFuel = findViewById<TextView>(R.id.textViewFuel)
-                    textViewFuel.text = fueldata["brandstof_omschrijving"]?.toLowerCase()?.capitalize()
-                    if(fueldata["brandstof_omschrijving"]!! == "Elektriciteit"){
-                        var imageViewFuel = findViewById<ImageView>(R.id.FuelIcon)
-                        imageViewFuel.setImageResource(R.drawable.ic_power_plug)
-                    }
-
-                    //set mileage text
-                    if(fueldata["brandstofverbruik_gecombineerd"] != null) {
-                        var textViewMileage = findViewById<TextView>(R.id.textViewMileage)
-                        textViewMileage.text = (fueldata["brandstofverbruik_gecombineerd"]?.toFloat()).toString() + "l/100km"
-                    }
+//                    //Set energylabel text
+//                    if(car["zuinigheidslabel"] != null) {
+//                        var textViewEnergy = findViewById<TextView>(R.id.textViewEnergy)
+//                        textViewEnergy.text = "Energie " + car["zuinigheidslabel"]
+//                    }
+//
+//                    //Set doors text
+//                    if(car["aantal_deuren"] != null) {
+//                        var textViewDoors = findViewById<TextView>(R.id.textViewDoors)
+//                        textViewDoors.text = car["aantal_deuren"] + " deuren"
+//                    }
+//
+//                    //Set body text
+//                    var textViewBody = findViewById<TextView>(R.id.textViewBody)
+//                    textViewBody.text = car["inrichting"]?.toLowerCase()?.capitalize()
+//
+//                    //set fuel text
+//                    var textViewFuel = findViewById<TextView>(R.id.textViewFuel)
+//                    textViewFuel.text = fueldata["brandstof_omschrijving"]?.toLowerCase()?.capitalize()
+//                    if(fueldata["brandstof_omschrijving"]!! == "Elektriciteit"){
+//                        var imageViewFuel = findViewById<ImageView>(R.id.FuelIcon)
+//                        imageViewFuel.setImageResource(R.drawable.ic_power_plug)
+//                    }
+//
+//                    //set mileage text
+//                    if(fueldata["brandstofverbruik_gecombineerd"] != null) {
+//                        var textViewMileage = findViewById<TextView>(R.id.textViewMileage)
+//                        textViewMileage.text = (fueldata["brandstofverbruik_gecombineerd"]?.toFloat()).toString() + "l/100km"
+//                    }
                     //labels
-                    var labels = findViewById<TextView>(R.id.retrieved_info_labels)
+                    var labels = findViewById<TextView>(R.id.general_info_labels)
                     labels.visibility = View.VISIBLE
 
                     var licensePlateInput = findViewById<TextView>(R.id.license_plate_input2)
                     licensePlateInput.text = licenseplate
-
-
-                    //show premie button
-                    var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
-                    premieBtn.visibility = View.VISIBLE
-
-                    //hide loader
-                    loading.visibility = View.GONE
                 } else {
                     licensePlateError()
                 }

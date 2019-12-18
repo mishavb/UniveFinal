@@ -13,92 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewMileage"
-            android:layout_width="@dimen/cardViewWidth"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="@dimen/buttonSideMargin"
-            android:layout_marginRight="@dimen/buttonSideMargin"
-            app:cardBackgroundColor="@color/cardBackground"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="-1dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewBody">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textViewMileage"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="Onbekend"
-                    android:textSize="@dimen/mainTextSize" />
-
-
-                <ImageView
-                    android:id="@+id/MileageIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_jerrycan" />
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewFuel"
-            android:layout_width="@dimen/cardViewWidth"
-            android:layout_height="70dp"
-            android:layout_marginStart="@dimen/buttonSideMargin"
-            android:layout_marginLeft="@dimen/buttonSideMargin"
-            android:layout_marginTop="20dp"
-            app:cardBackgroundColor="@color/cardBackground"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="-1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewDoors">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textViewFuel"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="Onbekend"
-                    android:textSize="@dimen/mainTextSize" />
-
-
-                <ImageView
-                    android:id="@+id/FuelIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_gas_pump" />
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="311dp"
@@ -148,29 +62,26 @@
             app:layout_constraintStart_toStartOf="@+id/imageView3"
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
-        <Button
-            android:id="@+id/buttonCalcPremie"
-            style="@style/NavForwardButtonPurple"
-            android:layout_width="400dp"
-            android:layout_height="62dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="5dp"
-            android:text="Bereken uw premie"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/generalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="@string/title_cardview_general"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/cardViewGeneral"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/buttonSideMargin"
             android:layout_marginLeft="@dimen/buttonSideMargin"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="@dimen/buttonSideMargin"
             android:layout_marginRight="@dimen/buttonSideMargin"
             app:cardBackgroundColor="@color/cardBackground"
@@ -178,14 +89,14 @@
             app:cardElevation="-1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3">
+            app:layout_constraintTop_toBottomOf="@+id/generalTitle">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/retrieved_info"
+                    android:id="@+id/general_info"
                     android:layout_width="221dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -197,9 +108,9 @@
                     android:layout_marginEnd="25dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_toEndOf="@+id/retrieved_info_labels"
-                    android:layout_toRightOf="@+id/retrieved_info_labels"
-                    android:fontFamily="@font/open_sans_bold"
+                    android:layout_toEndOf="@+id/general_info_labels"
+                    android:layout_toRightOf="@+id/general_info_labels"
+                    android:fontFamily="@font/open_sans_semibold"
                     android:textAllCaps="false"
                     android:textColor="#505050"
                     android:textSize="@dimen/mainTextSize"
@@ -208,7 +119,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/retrieved_info_labels"
+                    android:id="@+id/general_info_labels"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -218,196 +129,237 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="@string/vehicle_titles"
+                    android:width="160dp"
+                    android:fontFamily="@font/open_sans_light"
+                    android:text="@string/general_info_labels"
                     android:textColor="#505050"
                     android:textSize="@dimen/mainTextSize"
                     android:textStyle="bold"
-                    android:visibility="invisible" />
+                    android:visibility="visible" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/vehicleInfoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="@string/title_cardview_vehicle"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewGeneral" />
+
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewAPK"
-            android:layout_width="@dimen/cardViewWidth"
-            android:layout_height="70dp"
+            android:id="@+id/cardViewVehicle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/buttonSideMargin"
             android:layout_marginLeft="@dimen/buttonSideMargin"
-            android:layout_marginTop="20dp"
-            app:cardBackgroundColor="@color/cardBackground"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="-1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textViewAPK"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="Onbekend"
-                    android:textSize="@dimen/mainTextSize" />
-
-
-                <ImageView
-                    android:id="@+id/APKicon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_check" />
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewDoors"
-            android:layout_width="@dimen/cardViewWidth"
-            android:layout_height="70dp"
-            android:layout_marginStart="@dimen/buttonSideMargin"
-            android:layout_marginLeft="@dimen/buttonSideMargin"
-            android:layout_marginTop="20dp"
-            app:cardBackgroundColor="@color/cardBackground"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="-1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewAPK">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textViewDoors"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="Onbekend"
-                    android:textSize="@dimen/mainTextSize" />
-
-
-                <ImageView
-                    android:id="@+id/DoorIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_car_door" />
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewEnergy"
-            android:layout_width="@dimen/cardViewWidth"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="@dimen/buttonSideMargin"
             android:layout_marginRight="@dimen/buttonSideMargin"
             app:cardBackgroundColor="@color/cardBackground"
             app:cardCornerRadius="3dp"
             app:cardElevation="-1dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/cardViewAPK"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vehicleInfoTitle">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/textViewEnergy"
-                    android:layout_width="130dp"
+                    android:id="@+id/vehicle_info"
+                    android:layout_width="221dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="Onbekend"
-                    android:textSize="@dimen/mainTextSize" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/vehicle_info_labels"
+                    android:layout_toRightOf="@+id/vehicle_info_labels"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textAllCaps="false"
+                    android:textColor="#505050"
+                    android:textSize="@dimen/mainTextSize"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <ImageView
-                    android:id="@+id/energyIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                <TextView
+                    android:id="@+id/vehicle_info_labels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_earth_icon" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:width="160dp"
+                    android:fontFamily="@font/open_sans_light"
+                    android:text="@string/vehicle_info_labels"
+                    android:textColor="#505050"
+                    android:textSize="@dimen/mainTextSize"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/vehicleCostsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/open_sans_semibold"
+            android:text="@string/title_cardview_costs"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewVehicle" />
+
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardViewBody"
-            android:layout_width="@dimen/cardViewWidth"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
+            android:id="@+id/cardViewCosts"
+            android:layout_width="0dp"
+            android:layout_height="230dp"
+            android:layout_marginStart="@dimen/buttonSideMargin"
+            android:layout_marginLeft="@dimen/buttonSideMargin"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="@dimen/buttonSideMargin"
             android:layout_marginRight="@dimen/buttonSideMargin"
             app:cardBackgroundColor="@color/cardBackground"
             app:cardCornerRadius="3dp"
             app:cardElevation="-1dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/cardViewAPK"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewEnergy">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vehicleCostsTitle">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/textViewBody"
-                    android:layout_width="130dp"
+                    android:id="@+id/vehicle_costs"
+                    android:layout_width="221dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:text="Onbekend"
-                    android:textSize="@dimen/mainTextSize" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_toEndOf="@+id/vehicle_costs_labels"
+                    android:layout_toRightOf="@+id/vehicle_costs_labels"
+                    android:fontFamily="@font/open_sans_semibold"
+                    android:textAllCaps="false"
+                    android:textColor="#505050"
+                    android:textSize="@dimen/mainTextSize"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <ImageView
-                    android:id="@+id/bodyIcon"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                <TextView
+                    android:id="@+id/vehicle_costs_labels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_car" />
+                    android:layout_marginStart="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:width="160dp"
+                    android:fontFamily="@font/open_sans_light"
+                    android:text="@string/vehicle_costs_labels"
+                    android:textColor="#505050"
+                    android:textSize="@dimen/mainTextSize"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/costsheading1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/vehicle_costs_labels"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Naar schatting betaalt u voor deze auto" />
+
+                <TextView
+                    android:id="@+id/total_costs_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/costsheading1"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:fontFamily="@font/bree_serif"
+                    android:gravity="center"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/costsheading2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/total_costs_label"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="-10dp"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Op basis van 10.000km per jaar\nAlle bedragen zijn indicatief."
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
 
             </RelativeLayout>
+
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/buttonCalcPremie"
+            style="@style/NavForwardButtonPurple"
+            android:layout_width="400dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:text="Bereken uw premie"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewCosts" />
 
         <RelativeLayout
             android:id="@+id/loader"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="#FFFFFF"
-            android:visibility="gone">
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ProgressBar
                 android:id="@+id/pBar"
@@ -415,7 +367,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:theme="@style/GreenLoader"></ProgressBar>
+                android:theme="@style/GreenLoader" />
         </RelativeLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

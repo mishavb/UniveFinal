@@ -43,6 +43,7 @@ class WebViewController : AppCompatActivity() {
 
         if(viewUrl != null) {
 
+            //catch exception that occurs on older android devices, and make webview in appcontext
             try {
                 var webView = WebView(this)
                 makeWebView(webView, viewUrl)
