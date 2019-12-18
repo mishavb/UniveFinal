@@ -97,6 +97,7 @@
 
                 <TextView
                     android:id="@+id/general_info"
+                    style="@style/vehicleInfoData"
                     android:layout_width="221dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -110,7 +111,6 @@
                     android:layout_marginBottom="10dp"
                     android:layout_toEndOf="@+id/general_info_labels"
                     android:layout_toRightOf="@+id/general_info_labels"
-                    android:fontFamily="@font/open_sans_semibold"
                     android:textAllCaps="false"
                     android:textColor="#505050"
                     android:textSize="@dimen/mainTextSize"
@@ -122,20 +122,13 @@
                     android:id="@+id/general_info_labels"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
                     android:layout_marginStart="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:width="160dp"
-                    android:fontFamily="@font/open_sans_light"
                     android:text="@string/general_info_labels"
-                    android:textColor="#505050"
-                    android:textSize="@dimen/mainTextSize"
-                    android:textStyle="bold"
-                    android:visibility="visible" />
+                    style="@style/vehicleInfoLabels"
+                />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -188,31 +181,24 @@
                     android:layout_marginBottom="10dp"
                     android:layout_toEndOf="@+id/vehicle_info_labels"
                     android:layout_toRightOf="@+id/vehicle_info_labels"
-                    android:fontFamily="@font/open_sans_semibold"
                     android:textAllCaps="false"
                     android:textColor="#505050"
                     android:textSize="@dimen/mainTextSize"
                     android:textStyle="bold"
+                    style="@style/vehicleInfoData"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/vehicle_info_labels"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/vehicle_info_labels"
                     android:layout_marginStart="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:width="160dp"
-                    android:fontFamily="@font/open_sans_light"
                     android:text="@string/vehicle_info_labels"
-                    android:textColor="#505050"
-                    android:textSize="@dimen/mainTextSize"
-                    android:textStyle="bold"
+                    style="@style/vehicleInfoLabels"
                     android:visibility="visible" />
 
             </RelativeLayout>
@@ -253,6 +239,7 @@
 
                 <TextView
                     android:id="@+id/vehicle_costs"
+                    style="@style/vehicleInfoData"
                     android:layout_width="221dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -264,7 +251,6 @@
                     android:layout_marginRight="25dp"
                     android:layout_toEndOf="@+id/vehicle_costs_labels"
                     android:layout_toRightOf="@+id/vehicle_costs_labels"
-                    android:fontFamily="@font/open_sans_semibold"
                     android:textAllCaps="false"
                     android:textColor="#505050"
                     android:textSize="@dimen/mainTextSize"
@@ -274,19 +260,14 @@
 
                 <TextView
                     android:id="@+id/vehicle_costs_labels"
+                    style="@style/vehicleInfoLabels"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_marginStart="15dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
-                    android:width="160dp"
-                    android:fontFamily="@font/open_sans_light"
+                    android:layout_centerVertical="false"
                     android:text="@string/vehicle_costs_labels"
-                    android:textColor="#505050"
-                    android:textSize="@dimen/mainTextSize"
-                    android:textStyle="bold"
                     android:visibility="visible" />
 
                 <TextView
@@ -334,28 +315,12 @@
 
         </androidx.cardview.widget.CardView>
 
-        <Button
-            android:id="@+id/buttonCalcPremie"
-            style="@style/NavForwardButtonPurple"
-            android:layout_width="400dp"
-            android:layout_height="62dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
-            android:text="Bereken uw premie"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardViewCosts" />
-
         <RelativeLayout
-            android:id="@+id/loader"
+            android:id="@+id/loaderOverlay"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="#FFFFFF"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -369,7 +334,17 @@
                 android:layout_centerVertical="true"
                 android:theme="@style/GreenLoader" />
         </RelativeLayout>
-
-
+        
+        <Button
+            android:id="@+id/buttonCalcPremie"
+            style="@style/NavForwardButtonPurple"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:text="Bereken uw premie"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardViewCosts" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

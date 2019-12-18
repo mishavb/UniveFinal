@@ -48,9 +48,9 @@ class LicensePlateManual : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
 
-        val licenseplateinput = findViewById<EditText>(R.id.license_plate_input)
+        var licensePlateInput = findViewById<EditText>(R.id.license_plate_input)
 
-        licenseplateinput.addTextChangedListener(object : TextWatcher {
+        licensePlateInput.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
 
@@ -60,14 +60,14 @@ class LicensePlateManual : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                val str = licenseplateinput.text.toString()
+                val str = licensePlateInput.text.toString()
                 if(str.length >= 6 && str.length <= 8){
                     val pos = AppMethods.validLicensePlate(str)
                     if(pos != 0){
                         val newstr = formatLicenseForDisplay(pos, str)
                         if(str != newstr){
-                            licenseplateinput.setText(newstr)
-                            licenseplateinput.setSelection(newstr.length)
+                            licensePlateInput.setText(newstr)
+                            licensePlateInput.setSelection(newstr.length)
                         }
                     }
                 }
@@ -76,7 +76,7 @@ class LicensePlateManual : AppCompatActivity() {
         //button actions
         val retrieveVehicleInfo = findViewById<Button>(R.id.vehicle_information)
         retrieveVehicleInfo.setOnClickListener{
-            val licenseplatetext = licenseplateinput.text.toString()
+            val licenseplatetext = licensePlateInput.text.toString()
             val errorlabel = findViewById<TextView>(R.id.errorlabel)
             errorlabel.text = ""
 

@@ -1,91 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".VehicleMenu"
+    tools:context=".VehicleInformation"
     tools:showIn="@layout/activity_vehicle_menu">
 
-    <Button
-        android:id="@+id/retrieve_vehicle_info"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/buttonSideMargin"
-        android:layout_marginLeft="@dimen/buttonSideMargin"
-        android:layout_marginEnd="@dimen/buttonSideMargin"
-        android:layout_marginRight="@dimen/buttonSideMargin"
-        android:drawableLeft="@drawable/button_car_xml"
-        android:text="@string/retrieve_vehicle_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-    <Button
-        android:id="@+id/tips"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/buttonSideMargin"
-        android:layout_marginLeft="@dimen/buttonSideMargin"
-        android:layout_marginEnd="@dimen/buttonSideMargin"
-        android:layout_marginRight="@dimen/buttonSideMargin"
-        android:drawablePadding="24dp"
-        android:paddingLeft="22dp"
-        android:drawableLeft="@drawable/button_cartips_xml"
-        android:text="@string/vehicle_tips"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/retrieve_vehicle_info" />
-
-    <Button
-        android:id="@+id/privateLease"
-        style="@style/CustomButton"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/buttonSideMargin"
-        android:layout_marginLeft="@dimen/buttonSideMargin"
-        android:layout_marginEnd="@dimen/buttonSideMargin"
-        android:layout_marginRight="@dimen/buttonSideMargin"
-        android:drawableLeft="@drawable/button_carlease_xml"
-        android:drawablePadding="24dp"
-        android:paddingLeft="20dp"
-        android:text="@string/privateLease"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tips" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/bree_serif"
-        android:text="@string/vehicle_menu_heading"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/titleTextSize"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/imageView4"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="235dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/visual1" />
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/retrieve_vehicle_info"
+            style="@style/CustomButton"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/buttonSideMargin"
+            android:layout_marginLeft="@dimen/buttonSideMargin"
+            android:layout_marginEnd="@dimen/buttonSideMargin"
+            android:layout_marginRight="@dimen/buttonSideMargin"
+            android:drawableLeft="@drawable/ic_car_blue"
+            android:text="@string/retrieve_vehicle_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+        <Button
+            android:id="@+id/tips"
+            style="@style/CustomButton"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/buttonSideMargin"
+            android:layout_marginLeft="@dimen/buttonSideMargin"
+            android:layout_marginEnd="@dimen/buttonSideMargin"
+            android:layout_marginRight="@dimen/buttonSideMargin"
+            android:drawableLeft="@drawable/ic_info_blue"
+            android:drawablePadding="24dp"
+            android:paddingLeft="20dp"
+            android:text="@string/vehicle_tips"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/retrieve_vehicle_info" />
+
+        <Button
+            android:id="@+id/privateLease"
+            style="@style/CustomButton"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/buttonSideMargin"
+            android:layout_marginLeft="@dimen/buttonSideMargin"
+            android:layout_marginEnd="@dimen/buttonSideMargin"
+            android:layout_marginRight="@dimen/buttonSideMargin"
+            android:drawableLeft="@drawable/ic_private_lease_blue"
+            android:drawablePadding="24dp"
+            android:paddingLeft="20dp"
+            android:text="@string/privateLease"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tips" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/bree_serif"
+            android:text="@string/vehicle_menu_heading"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/titleTextSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.094"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="235dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:srcCompat="@drawable/visual1" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

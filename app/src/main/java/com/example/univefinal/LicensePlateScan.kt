@@ -82,7 +82,6 @@ class LicensePlateScan : AppCompatActivity() {
         // Handle action bar item clicks here.
         val id = item.itemId
         returnToMainMenu(id, this)
-
         return super.onOptionsItemSelected(item)
     }
 

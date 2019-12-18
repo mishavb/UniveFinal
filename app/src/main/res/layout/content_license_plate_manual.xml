@@ -70,23 +70,17 @@
         android:layout_marginTop="81dp"
         android:layout_marginEnd="@dimen/buttonSideMargin"
         android:layout_marginRight="@dimen/buttonSideMargin"
-        android:drawableLeft="@drawable/button_camera_xml"
+        android:drawableLeft="@drawable/ic_camera_blue"
         android:text="@string/scan_with_camera"
-        android:textSize="17dp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/vehicle_information"
-        android:layout_width="400dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginBottom="5dp"
         style="@style/NavForwardButtonPurple"
+        android:text="Gegevens ophalen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
