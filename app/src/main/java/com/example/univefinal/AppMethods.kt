@@ -68,7 +68,6 @@ class AppMethods {
         fun returnToMainMenu(id : Int, context : Context) {
             if (id == R.id.to_main_menu) {
                 val intent = Intent(context, MainActivity::class.java)
-
                 //return to MainActivity
                 context.startActivity(intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
 

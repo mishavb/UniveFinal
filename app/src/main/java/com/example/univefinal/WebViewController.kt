@@ -69,7 +69,7 @@ class WebViewController : AppCompatActivity() {
 
         webView.loadUrl(viewUrl)
 
-        var loader = findViewById<RelativeLayout>(R.id.loader)
+        val loader = findViewById<RelativeLayout>(R.id.loader)
         loader.visibility = View.VISIBLE
         webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {

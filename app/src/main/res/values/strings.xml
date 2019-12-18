@@ -35,7 +35,7 @@
     <string name="title_cardview_vehicle">Voertuiginformatie</string>
     <string name="title_cardview_costs">Kosten per maand</string>
 
-    <string name="vehicle_info_labels">APK datum\nVermogen\nGewicht\nVerbruik</string>
-    <string name="general_info_labels">Merk\nModel\nUitvoering\nKleur</string>
+    <string name="vehicle_info_labels">APK datum\nBrandstoftype\nGewicht\nVermogen\nVerbruik</string>
+    <string name="general_info_labels">Uitvoering\nBouwjaar\nZitplaatsen\nAantal deuren\nKleur</string>
     <string name="vehicle_costs_labels">Afschrijving\nWegenbelasting\nVerzekering WA\nOnderhoud\nBanden</string>
 </resources>

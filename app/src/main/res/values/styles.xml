@@ -60,10 +60,16 @@
         <item name="android:fontFamily">@font/open_sans_semibold</item>
         <item name="android:gravity">left|center</item>
         <item name="android:paddingLeft">30dp</item>
-        <item name="android:text">Gegevens ophalen"</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">62dp</item>
     </style>
 
     <style name="NavButtonPurple" parent="@style/Widget.AppCompat.Button">
@@ -78,5 +84,22 @@
 
     <style name="GreenLoader" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="vehicleInfoLabels" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:lineSpacingMultiplier">1.4</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:width">160dp</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+        <item name="android:textColor">#505050</item>
+        <item name="android:textSize">@dimen/mainTextSize</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="vehicleInfoData" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:lineSpacingMultiplier">1.4</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
     </style>
 </resources>

@@ -191,7 +191,7 @@ class VehicleInformation : AppCompatActivity() {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-        var loading = findViewById<RelativeLayout>(R.id.loader)
+        var loading = findViewById<RelativeLayout>(R.id.loaderOverlay)
         loading.visibility = View.VISIBLE
         val licensePlateFormatted = licenseplate.replace("-", "")
 
@@ -222,13 +222,17 @@ class VehicleInformation : AppCompatActivity() {
                     if(fueldata["brandstofverbruik_gecombineerd"] != null) {
                         verbruik = (fueldata["brandstofverbruik_gecombineerd"]?.toFloat()).toString() + "l/100km"
                     }
-                    var generalText = "\n\n" +
-                            car["uitvoering"] +
+                    Log.d("car: ", car.toString())
+                    var generalText = car["inrichting"] +
+                            "test\n" + car["bouwjaar"]
+                            "\n" + car["aantal_zitplaatsen"] +
+                            "\n" + car["aantal_deuren"] +
                             "\n" + car["eerste_kleur"]
 
                     var vehicleText = formatAPKDate(car["vervaldatum_apk"]) +
-                            "\n" + vermogen +
+                            "\n" + fueldata["brandstoftype"] +
                             "\n" + car["massa_ledig_voertuig"] +
+                            "\n" + vermogen +
                             "\n" + verbruik
 
                     var merk = car["merk"]?.toLowerCase()?.capitalize()

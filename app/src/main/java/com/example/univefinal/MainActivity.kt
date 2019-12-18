@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
             supportActionBar?.hide()
         //button actions
         val buyCar = findViewById<Button>(R.id.buyCar)
+        buyCar.requestFocus()
         buyCar.setOnClickListener{
             val intent = Intent(this, VehicleMenu::class.java)
             startActivity(intent)

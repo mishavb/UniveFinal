@@ -39,7 +39,7 @@ class LicenseError : AppCompatActivity() {
         actionbar.setDisplayHomeAsUpEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
 
-        val tryAgain = findViewById<Button>(R.id.tryAgain)
+        val tryAgain = findViewById<Button>(R.id.tryAgainButton)
         tryAgain.setOnClickListener{
             onBackPressed()
         }

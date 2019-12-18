@@ -59,7 +59,7 @@
 
 
     <Button
-        android:id="@+id/tryAgain"
+        android:id="@+id/tryAgainButton"
         style="@style/NavForwardButtonPurple"
         android:layout_width="400dp"
         android:layout_height="62dp"
