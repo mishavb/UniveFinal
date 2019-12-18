@@ -10,6 +10,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.univefinal.AppMethods.Companion.getJsonFromURL
+import com.example.univefinal.AppMethods.Companion.capitalizeWords
+import com.example.univefinal.AppMethods.Companion.parseVehicleCosts
 import kotlinx.android.synthetic.main.activity_vehicle_information.*
 import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.uiThread
@@ -89,11 +92,6 @@ class VehicleInformation : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-    }
-
-    fun getJsonFromURL(wantedURL: String) : String {
-        val text = URL(wantedURL).readText()
-        return text
     }
 
     fun formatAPKDate(apkDate : String?) : String {
@@ -188,58 +186,6 @@ class VehicleInformation : AppCompatActivity() {
         }
     }
 
-    private fun parseVehicleCosts(xmlData : String) : ArrayList<HashMap<String, String>> {
-        var empDataHashMap = HashMap<String, String>()
-        var empList: ArrayList<HashMap<String, String>> = ArrayList()
-        try {
-            val builderFactory = DocumentBuilderFactory.newInstance()
-            val docBuilder = builderFactory.newDocumentBuilder()
-            val doc = docBuilder.parse(InputSource(StringReader(xmlData)))
-            //reading the tag "employee" of empdetail file
-            val AfschrijvingEnRente = doc.getElementsByTagName("")
-            val ReparatieEnOnderhoud = doc.getElementsByTagName("ReparatieEnOnderhoud")
-            val Banden = doc.getElementsByTagName("Banden")
-            val MRB = doc.getElementsByTagName("MRB")
-            val Verzekering = doc.getElementsByTagName("Verzekering")
-            val TCO_Totaal = doc.getElementsByTagName("TCO_Totaal")
-
-            empDataHashMap = HashMap()
-            val parentEl = doc.getElementsByTagName("TCO_Uitkomst").item(0) as Element
-            empDataHashMap.put("AfschrijvingEnRente", getNodeValue("AfschrijvingEnRente", parentEl))
-            empDataHashMap.put("ReparatieEnOnderhoud", getNodeValue("ReparatieEnOnderhoud", parentEl))
-            empDataHashMap.put("Banden", getNodeValue("Banden", parentEl))
-            empDataHashMap.put("MRB", getNodeValue("MRB", parentEl))
-            empDataHashMap.put("Verzekering", getNodeValue("Verzekering", parentEl))
-            empDataHashMap.put("TCO_Totaal", getNodeValue("TCO_Totaal", parentEl))
-
-
-            empList.add(empDataHashMap)
-
-        } catch (e: IOException) {
-            e.printStackTrace()
-        } catch (e: ParserConfigurationException) {
-            e.printStackTrace()
-        } catch (e: SAXException) {
-            e.printStackTrace()
-        }
-        return empList
-    }
-
-    protected fun getNodeValue(tag: String, element: Element): String {
-        val nodeList = element.getElementsByTagName(tag)
-        val node = nodeList.item(0)
-        if (node != null) {
-            if (node.hasChildNodes()) {
-                val child = node.getFirstChild()
-                while (child != null) {
-                    if (child.getNodeType() === Node.TEXT_NODE) {
-                        return child.getNodeValue()
-                    }
-                }
-            }
-        }
-        return ""
-    }
 
     private fun loadVehicleData(licenseplate : String, textView : TextView) {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -343,5 +289,4 @@ class VehicleInformation : AppCompatActivity() {
             }
         }
     }
-    fun String.capitalizeWords(): String = split(" ").map { it.capitalize() }.joinToString(" ")
 }

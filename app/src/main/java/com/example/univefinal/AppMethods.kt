@@ -12,8 +12,14 @@ import org.w3c.dom.Text
 import java.net.URL
 import android.R.transition.explode
 import android.R.array
-
-
+import org.w3c.dom.Element
+import org.w3c.dom.Node
+import org.xml.sax.InputSource
+import org.xml.sax.SAXException
+import java.io.IOException
+import java.io.StringReader
+import javax.xml.parsers.DocumentBuilderFactory
+import javax.xml.parsers.ParserConfigurationException
 
 
 class AppMethods {
@@ -105,5 +111,68 @@ class AppMethods {
         fun isOnline(context : Context) : Boolean{
             return context.isConnectedToNetwork()
         }
+
+        fun getJsonFromURL(wantedURL: String) : String {
+            var text = ""
+            if(wantedURL != "") {
+                text = URL(wantedURL).readText()
+            }
+            return text
+        }
+
+        fun parseVehicleCosts(xmlData : String) : ArrayList<HashMap<String, String>> {
+            var empDataHashMap = HashMap<String, String>()
+            var empList: ArrayList<HashMap<String, String>> = ArrayList()
+            try {
+                val builderFactory = DocumentBuilderFactory.newInstance()
+                val docBuilder = builderFactory.newDocumentBuilder()
+                val doc = docBuilder.parse(InputSource(StringReader(xmlData)))
+                //reading the tag "employee" of empdetail file
+                val AfschrijvingEnRente = doc.getElementsByTagName("")
+                val ReparatieEnOnderhoud = doc.getElementsByTagName("ReparatieEnOnderhoud")
+                val Banden = doc.getElementsByTagName("Banden")
+                val MRB = doc.getElementsByTagName("MRB")
+                val Verzekering = doc.getElementsByTagName("Verzekering")
+                val TCO_Totaal = doc.getElementsByTagName("TCO_Totaal")
+
+                empDataHashMap = HashMap()
+                val parentEl = doc.getElementsByTagName("TCO_Uitkomst").item(0) as Element
+                empDataHashMap.put("AfschrijvingEnRente", getNodeValue("AfschrijvingEnRente", parentEl))
+                empDataHashMap.put("ReparatieEnOnderhoud", getNodeValue("ReparatieEnOnderhoud", parentEl))
+                empDataHashMap.put("Banden", getNodeValue("Banden", parentEl))
+                empDataHashMap.put("MRB", getNodeValue("MRB", parentEl))
+                empDataHashMap.put("Verzekering", getNodeValue("Verzekering", parentEl))
+                empDataHashMap.put("TCO_Totaal", getNodeValue("TCO_Totaal", parentEl))
+
+
+                empList.add(empDataHashMap)
+
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } catch (e: ParserConfigurationException) {
+                e.printStackTrace()
+            } catch (e: SAXException) {
+                e.printStackTrace()
+            }
+            return empList
+        }
+
+        protected fun getNodeValue(tag: String, element: Element): String {
+            val nodeList = element.getElementsByTagName(tag)
+            val node = nodeList.item(0)
+            if (node != null) {
+                if (node.hasChildNodes()) {
+                    val child = node.getFirstChild()
+                    while (child != null) {
+                        if (child.getNodeType() === Node.TEXT_NODE) {
+                            return child.getNodeValue()
+                        }
+                    }
+                }
+            }
+            return ""
+        }
+
+        fun String.capitalizeWords(): String = split(" ").map { it.capitalize() }.joinToString(" ")
     }
 }
