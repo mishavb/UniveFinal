@@ -70,17 +70,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <Button
-                android:id="@+id/healthInsurance"
-                style="@style/CustomButton"
-                android:layout_width="match_parent"
-                android:drawableLeft="@drawable/ic_health_cross_blue"
-                android:text="@string/health_insurance"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buyCar" />
-
-            <Button
                 android:id="@+id/buyHouse"
                 style="@style/CustomButton"
                 android:layout_width="match_parent"
@@ -89,7 +78,18 @@
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/healthInsurance" />
+                app:layout_constraintTop_toBottomOf="@+id/buyCar" />
+
+            <Button
+                android:id="@+id/healthInsurance"
+                style="@style/CustomButton"
+                android:layout_width="match_parent"
+                android:drawableLeft="@drawable/ic_health_cross_blue"
+                android:text="@string/health_insurance"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buyHouse" />
 
             <Button
                 android:id="@+id/damageService"
@@ -100,7 +100,7 @@
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buyHouse" />
+                app:layout_constraintTop_toBottomOf="@+id/healthInsurance" />
 
         </LinearLayout>
 
