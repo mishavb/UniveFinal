@@ -201,22 +201,6 @@
                     style="@style/vehicleInfoLabels"
                     android:visibility="visible" />
 
-                <RelativeLayout
-                    android:id="@+id/loaderOverlay"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="#FFFFFF"
-                    android:visibility="invisible">
-
-                    <ProgressBar
-                        android:id="@+id/pBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:theme="@style/GreenLoader" />
-                </RelativeLayout>
-
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -232,6 +216,26 @@
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardViewVehicle" />
+
+        <RelativeLayout
+            android:id="@+id/loaderOverlay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#FFFFFF"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/pBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="300dp"
+                android:theme="@style/GreenLoader" />
+        </RelativeLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewCosts"
