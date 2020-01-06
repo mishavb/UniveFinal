@@ -31,6 +31,7 @@ import kotlin.math.roundToInt
 
 class VehicleInformation : AppCompatActivity() {
 
+    private val valArray = arrayOf<String>("inrichting", "bouwjaar", "aantal_zitplaatsen", "aantal_deuren", "eerste_kleur", "massa_ledig_voertuig", "vervaldatum_apk")
 
     override fun onStart() {
         super.onStart()
@@ -126,6 +127,14 @@ class VehicleInformation : AppCompatActivity() {
                     var valueString = keyValPair[1].replace("\"", "").replace("\"", "")
                     //add to map
                     map.put(keyString, valueString)
+
+                    valArray.forEach{
+                        if(map[it] == null  || map[it] == "niet geregistreerd") {
+                            map[it] = "Onbekend"
+                        }else if(map[it] is String){
+                            map[it] = map[it]?.toLowerCase()?.capitalize()
+                        }
+                    }
                 }
                 return map
             } else {
@@ -142,6 +151,8 @@ class VehicleInformation : AppCompatActivity() {
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
         startActivity(intent)
     }
+
+
 
     private fun loadVehicleCosts(licenseplate: String, loading : RelativeLayout) {
 
@@ -201,7 +212,6 @@ class VehicleInformation : AppCompatActivity() {
 
             val apiResult = getJsonFromURL(apiURL)
             val fuelApiResult = getJsonFromURL(fuelApiURL)
-
             //load vehicle costs from API
             loadVehicleCosts(licensePlateFormatted, loading)
 
@@ -209,10 +219,16 @@ class VehicleInformation : AppCompatActivity() {
                 var car = convertJSONtoLicenseplate(apiResult)
                 var fueldata = convertJSONtoLicenseplate(fuelApiResult)
                 Log.d("all ", car.toString())
+                Log.d("fueldata ", fueldata.toString())
                 if(car != null && fueldata != null) {
+
                     var catalogusprijs = "Onbekend"
                     if(car["catalogusprijs"] != null){
                         catalogusprijs = "€" + car["catalogusprijs"]
+                    }
+                    var brandstofType = "Onbekend"
+                    if(fueldata["brandstof_omschrijving"] != null){
+                        brandstofType = fueldata["brandstof_omschrijving"]?.toLowerCase()!!.capitalize()
                     }
                     var vermogen = "Onbekend"
                     if(fueldata["nettomaximumvermogen"] != null){
@@ -222,15 +238,17 @@ class VehicleInformation : AppCompatActivity() {
                     if(fueldata["brandstofverbruik_gecombineerd"] != null) {
                         verbruik = (fueldata["brandstofverbruik_gecombineerd"]?.toFloat()).toString() + "l/100km"
                     }
-                    Log.d("car: ", car.toString())
+
+                    //Build data string for general card
                     var generalText = car["inrichting"] +
-                            "test\n" + car["bouwjaar"]
+                            "\n" + formatAPKDate(car["datum_eerste_afgifte_nederland"]) +
                             "\n" + car["aantal_zitplaatsen"] +
                             "\n" + car["aantal_deuren"] +
                             "\n" + car["eerste_kleur"]
 
+                    //Build data string for vehicle card
                     var vehicleText = formatAPKDate(car["vervaldatum_apk"]) +
-                            "\n" + fueldata["brandstoftype"] +
+                            "\n" + brandstofType +
                             "\n" + car["massa_ledig_voertuig"] +
                             "\n" + vermogen +
                             "\n" + verbruik
@@ -244,42 +262,9 @@ class VehicleInformation : AppCompatActivity() {
                     title.text = merk + " " + handelsBenaming
 
                     textView.text = generalText
-
                     var vehicleTextView = findViewById<TextView>(R.id.vehicle_info)
                     vehicleTextView.text = vehicleText
-                    //set APK date text
-//                    var textViewAPK = findViewById<TextView>(R.id.textViewAPK)
-//                    textViewAPK.text = formatAPKDate(car["vervaldatum_apk"])
 
-//                    //Set energylabel text
-//                    if(car["zuinigheidslabel"] != null) {
-//                        var textViewEnergy = findViewById<TextView>(R.id.textViewEnergy)
-//                        textViewEnergy.text = "Energie " + car["zuinigheidslabel"]
-//                    }
-//
-//                    //Set doors text
-//                    if(car["aantal_deuren"] != null) {
-//                        var textViewDoors = findViewById<TextView>(R.id.textViewDoors)
-//                        textViewDoors.text = car["aantal_deuren"] + " deuren"
-//                    }
-//
-//                    //Set body text
-//                    var textViewBody = findViewById<TextView>(R.id.textViewBody)
-//                    textViewBody.text = car["inrichting"]?.toLowerCase()?.capitalize()
-//
-//                    //set fuel text
-//                    var textViewFuel = findViewById<TextView>(R.id.textViewFuel)
-//                    textViewFuel.text = fueldata["brandstof_omschrijving"]?.toLowerCase()?.capitalize()
-//                    if(fueldata["brandstof_omschrijving"]!! == "Elektriciteit"){
-//                        var imageViewFuel = findViewById<ImageView>(R.id.FuelIcon)
-//                        imageViewFuel.setImageResource(R.drawable.ic_power_plug)
-//                    }
-//
-//                    //set mileage text
-//                    if(fueldata["brandstofverbruik_gecombineerd"] != null) {
-//                        var textViewMileage = findViewById<TextView>(R.id.textViewMileage)
-//                        textViewMileage.text = (fueldata["brandstofverbruik_gecombineerd"]?.toFloat()).toString() + "l/100km"
-//                    }
                     //labels
                     var labels = findViewById<TextView>(R.id.general_info_labels)
                     labels.visibility = View.VISIBLE

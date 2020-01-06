@@ -15,7 +15,6 @@
         android:layout_height="132dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
         android:fontFamily="@font/bree_serif"
@@ -30,8 +29,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="151dp"
-        android:layout_height="114dp"
+        android:layout_width="175dp"
+        android:layout_height="130dp"
         android:layout_marginStart="130dp"
         android:layout_marginLeft="130dp"
         android:layout_marginTop="30dp"
@@ -40,14 +39,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/error_mark" />
+        app:srcCompat="@drawable/network_error" />
 
 
 
 
     <Button
         android:id="@+id/tryAgain"
-        style="@style/NavButtonPurple"
+        style="@style/NavForwardButtonPurple"
         android:layout_width="400dp"
         android:layout_height="62dp"
         android:layout_marginStart="2dp"
@@ -55,7 +54,7 @@
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginBottom="5dp"
-        android:text="Probeer opnieuw"
+        android:text="@string/try_again"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

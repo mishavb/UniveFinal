@@ -3,12 +3,14 @@ package com.example.univefinal
 import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Color
+import android.graphics.*
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.transition.Visibility
 import android.util.Base64
+import android.util.Base64OutputStream
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -147,8 +149,12 @@ class LicensePlateScan : AppCompatActivity() {
                 }
             }
         } else if (requestCode == CAMERA) {
+
+            var photo = data!!.extras!!.get("data") as Bitmap
+
             val thumbnail = data!!.extras!!.get("data") as Bitmap
             imageview.background = null
+
             imageview.setImageBitmap(thumbnail)
 
             fetchLicensePlateFromBitmap(thumbnail)

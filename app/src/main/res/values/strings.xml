@@ -22,7 +22,7 @@
     <string name="title_activity_license_error">LicenseError</string>
     <string name="vehicle_error_heading">Het ophalen van voertuiggegevens is niet gelukt</string>
     <string name="vehicle_error_text">Er is iets misgegaan tijdens het ophalen van de voertuiggegevens.</string>
-    <string name="network_error_heading">U heeft geen netwerkverbinding</string>
+    <string name="network_error_heading">U heeft geen internetverbinding.</string>
     <string name="title_activity_network_error"></string>
     <string name="title_activity_zorg_check">ZorgCheck</string>
     <string name="title_activity_hypotheek_check">HypotheekCheck</string>
@@ -34,7 +34,7 @@
     <string name="title_cardview_general">Algemeen</string>
     <string name="title_cardview_vehicle">Voertuiginformatie</string>
     <string name="title_cardview_costs">Kosten per maand</string>
-
+    <string name="try_again">Probeer opnieuw</string>
     <string name="vehicle_info_labels">APK datum\nBrandstoftype\nGewicht\nVermogen\nVerbruik</string>
     <string name="general_info_labels">Uitvoering\nBouwjaar\nZitplaatsen\nAantal deuren\nKleur</string>
     <string name="vehicle_costs_labels">Afschrijving\nWegenbelasting\nVerzekering WA\nOnderhoud\nBanden</string>
