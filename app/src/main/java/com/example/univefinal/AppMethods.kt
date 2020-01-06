@@ -152,6 +152,8 @@ class AppMethods {
                 e.printStackTrace()
             } catch (e: SAXException) {
                 e.printStackTrace()
+            } catch (e: TypeCastException) {
+                e.printStackTrace()
             }
             return empList
         }

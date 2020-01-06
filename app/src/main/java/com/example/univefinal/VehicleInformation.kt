@@ -10,22 +10,17 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.example.univefinal.AppMethods.Companion.getJsonFromURL
 import com.example.univefinal.AppMethods.Companion.capitalizeWords
 import com.example.univefinal.AppMethods.Companion.parseVehicleCosts
 import kotlinx.android.synthetic.main.activity_vehicle_information.*
-import org.jetbrains.anko.custom.async
+import kotlinx.android.synthetic.main.content_vehicle_information.*
 import org.jetbrains.anko.uiThread
-import java.net.URL
 import org.jetbrains.anko.doAsync
-import org.w3c.dom.Element
-import org.w3c.dom.Node
-import org.xml.sax.InputSource
-import org.xml.sax.SAXException
-import java.io.IOException
-import java.io.StringReader
-import javax.xml.parsers.DocumentBuilderFactory
-import javax.xml.parsers.ParserConfigurationException
+import java.math.RoundingMode
+import java.text.DecimalFormat
+
 import kotlin.math.roundToInt
 
 
@@ -157,42 +152,54 @@ class VehicleInformation : AppCompatActivity() {
     private fun loadVehicleCosts(licenseplate: String, loading : RelativeLayout) {
 
         doAsync {
-            val apiURL = "https://scr.autodisk.nl/wsTCO_Client/wsTCO.asmx/wsCalculeerTCO?nDebiteurNummer=4533429&strGebruikersnaam=Unive.NL&strWachtwoord=yhnK@uQ=53XWG23V%2597rbkg&strKenteken="+licenseplate+"&nKilometerStand=25000&nInzetLooptijd=24&nInzetKmPerJaar=10000&sngRentePercentage=3&nAantalMaandenInBezit=11"
+            val apiURL ="https://scr.autodisk.nl/wsTCO_Client/wsTCO.asmx/wsCalculeerTCO?nDebiteurNummer=4533429&strGebruikersnaam=Unive.NL&strWachtwoord=yhnK@uQ=53XWG23V%2597rbkg&strKenteken=" + licenseplate + "&nKilometerStand=25000&nInzetLooptijd=24&nInzetKmPerJaar=10000&sngRentePercentage=3&nAantalMaandenInBezit=11"
             val apiResult = getJsonFromURL(apiURL)
+
             uiThread {
                 var vehicleCosts = parseVehicleCosts(apiResult)
-                if(vehicleCosts.size != 0) {
-                    val TCO_Totaal = vehicleCosts[0].getValue("TCO_Totaal")
-                    val AfschrijvingEnRente = vehicleCosts[0].getValue("AfschrijvingEnRente")
-                    val ReparatieEnOnderhoud = vehicleCosts[0].getValue("ReparatieEnOnderhoud")
-                    val Banden = vehicleCosts[0].getValue("Banden")
-                    val Belasting = vehicleCosts[0].getValue("MRB")
-                    val Verzekering = vehicleCosts[0].getValue("Verzekering")
+                if (vehicleCosts.size != 0) {
+                    var costsMap = mutableMapOf(
+                        "Totaal" to vehicleCosts[0].getValue("TCO_Totaal"),
+                        "AfschrijvingEnRente" to vehicleCosts[0].getValue("AfschrijvingEnRente"),
+                        "ReparatieEnOnderhoud" to vehicleCosts[0].getValue("ReparatieEnOnderhoud"),
+                        "Banden" to vehicleCosts[0].getValue("Banden"),
+                        "Belasting" to vehicleCosts[0].getValue("MRB"),
+                        "Verzekering" to vehicleCosts[0].getValue("Verzekering")
+                    )
+
+                    var formattedCostsMap = mutableMapOf<String, String>()
+                    val df = DecimalFormat("###.00")
+                    df.roundingMode = RoundingMode.CEILING
+                    costsMap.forEach { (key, value) ->
+                        var x = value.replace(",", ".")
+                        x = df.format(x.toDouble()).toString()
+                        x = x.replace(".", ",")
+                        formattedCostsMap[key] = x
+                    }
+
                     var costsTextView = findViewById<TextView>(R.id.vehicle_costs)
-                    costsTextView.text = "€ " + AfschrijvingEnRente +
-                            "\n€ " + Belasting +
-                            "\n€ " + Verzekering +
-                            "\n€ " + ReparatieEnOnderhoud +
-                            "\n€ " + Banden
+                    costsTextView.text = "€ " + formattedCostsMap["AfschrijvingEnRente"] +
+                            "\n€ " + formattedCostsMap["Belasting"] +
+                            "\n€ " + formattedCostsMap["Verzekering"] +
+                            "\n€ " + formattedCostsMap["ReparatieEnOnderhoud"] +
+                            "\n€ " + formattedCostsMap["Banden"]
 
                     var totalCostsTextView = findViewById<TextView>(R.id.total_costs_label)
-                    totalCostsTextView.text =  "€ " + TCO_Totaal + " p.m."
-                    Log.d("Totale kosten", TCO_Totaal)
-                    Log.d("AfschrijvingEnRente", AfschrijvingEnRente)
-                    Log.d("ReparatieEnOnderhoud", ReparatieEnOnderhoud)
-                    Log.d("Banden", Banden)
-                    Log.d("Belasting", Belasting)
-                    Log.d("Verzekering", Verzekering)
+                    totalCostsTextView.text = "€ " + costsMap["Totaal"] + " p.m."
 
+                } else {
+                    var costsTitle = findViewById<TextView>(R.id.vehicleCostsTitle)
+                    costsTitle.visibility = View.GONE
 
-                    //hide loader
-                    loading.visibility = View.GONE
-
-                    //show premie button
-                    var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
-                    premieBtn.visibility = View.VISIBLE
-
+                    var costsCardView = findViewById<CardView>(R.id.cardViewCosts)
+                    costsCardView.visibility = View.GONE
                 }
+                //hide loader
+                loading.visibility = View.GONE
+
+                //show premie button
+                var premieBtn = findViewById<Button>(R.id.buttonCalcPremie)
+                premieBtn.visibility = View.VISIBLE
             }
         }
     }
@@ -241,7 +248,7 @@ class VehicleInformation : AppCompatActivity() {
 
                     //Build data string for general card
                     var generalText = car["inrichting"] +
-                            "\n" + formatAPKDate(car["datum_eerste_afgifte_nederland"]) +
+                            "\n" + formatAPKDate(car["datum_eerste_afgifte_nederland"]).split("-")[2] +
                             "\n" + car["aantal_zitplaatsen"] +
                             "\n" + car["aantal_deuren"] +
                             "\n" + car["eerste_kleur"]
@@ -249,7 +256,7 @@ class VehicleInformation : AppCompatActivity() {
                     //Build data string for vehicle card
                     var vehicleText = formatAPKDate(car["vervaldatum_apk"]) +
                             "\n" + brandstofType +
-                            "\n" + car["massa_ledig_voertuig"] +
+                            "\n" + car["massa_ledig_voertuig"] + " kg" +
                             "\n" + vermogen +
                             "\n" + verbruik
 
