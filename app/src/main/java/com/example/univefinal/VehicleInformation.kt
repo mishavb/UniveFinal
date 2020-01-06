@@ -172,8 +172,11 @@ class VehicleInformation : AppCompatActivity() {
                     df.roundingMode = RoundingMode.CEILING
                     costsMap.forEach { (key, value) ->
                         var x = value.replace(",", ".")
-                        x = df.format(x.toDouble()).toString()
+                        x = df.format(x.toDouble())
                         x = x.replace(".", ",")
+                        if(x == ",00"){
+                            x = "0,00"
+                        }
                         formattedCostsMap[key] = x
                     }
 
@@ -243,7 +246,7 @@ class VehicleInformation : AppCompatActivity() {
                     }
                     var verbruik = "Onbekend"
                     if(fueldata["brandstofverbruik_gecombineerd"] != null) {
-                        verbruik = (fueldata["brandstofverbruik_gecombineerd"]?.toFloat()).toString() + "l/100km"
+                        verbruik = (fueldata["brandstofverbruik_gecombineerd"]?.toFloat()).toString() + "l / 100km"
                     }
 
                     //Build data string for general card
