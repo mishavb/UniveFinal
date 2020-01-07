@@ -84,12 +84,12 @@ class WebViewController : AppCompatActivity() {
 
             override fun onPageFinished(view: WebView, url: String) {
                 //Strip header & footer
-//                    view?.loadUrl(
-//                        "javascript:(function() { " +
-//                                "var head = document.getElementsByClassName('mainHeader')[0].style.display='none'; " +
-//                                "var foot = document.getElementsByClassName('mainFooter')[0].style.display='none'; " +
-//                                "})()"
-//                    )
+                    view?.loadUrl(
+                        "javascript:(function() { " +
+                                "var head = document.getElementsByClassName('mainHeader')[0].style.display='none'; " +
+                                "var foot = document.getElementsByClassName('mainFooter')[0].style.display='none'; " +
+                                "})()"
+                    )
             }
         }
         val constraintLayout = findViewById<ConstraintLayout>(R.id.mainConstraintLayout)

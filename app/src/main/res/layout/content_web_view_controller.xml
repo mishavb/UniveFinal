@@ -10,15 +10,6 @@
     tools:context=".WebViewController"
     tools:showIn="@layout/activity_web_view_controller">
 
-
-<!--    <WebView-->
-<!--        android:id="@+id/zorgCheckView"-->
-<!--        android:layout_width="409dp"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <RelativeLayout
         android:id="@+id/loader"
         android:layout_width="match_parent"
