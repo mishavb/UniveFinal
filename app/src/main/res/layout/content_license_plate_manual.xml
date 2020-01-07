@@ -24,19 +24,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="308dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginRight="85dp"
+        android:layout_marginBottom="26dp"
+        android:text="Scan het kenteken van de auto met behulp van de camera of voer het kenteken handmatig in."
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/retrieve_vehicle_info3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="256dp"
         android:layout_height="93dp"
         android:layout_marginStart="77dp"
         android:layout_marginLeft="77dp"
-        android:layout_marginTop="203dp"
+        android:layout_marginTop="160dp"
         android:layout_marginEnd="78dp"
         android:layout_marginRight="78dp"
         android:src="@drawable/license_plate_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
         android:id="@+id/license_plate_input"
@@ -67,7 +84,7 @@
         android:layout_height="98dp"
         android:layout_marginStart="@dimen/buttonSideMargin"
         android:layout_marginLeft="@dimen/buttonSideMargin"
-        android:layout_marginTop="81dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="@dimen/buttonSideMargin"
         android:layout_marginRight="@dimen/buttonSideMargin"
         android:drawableLeft="@drawable/ic_camera_blue"
@@ -75,7 +92,7 @@
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/vehicle_information"
